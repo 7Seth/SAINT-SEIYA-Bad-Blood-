@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linha do Tempo</title>
+    <title>BAD BLOOD: Linha do Tempo</title>
     
+    <link rel="icon" href="https://www.dropbox.com/scl/fi/4ctmdotk81q515xgdhl3a/estrela_original_brilho_real-1.gif?rlkey=2ic956xmb48rmnvzf9ccd2ptm&st=9rz5q0sd&raw=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;900&family=Caesar+Dressing&display=swap" rel="stylesheet">
@@ -49,15 +50,24 @@
             font-size: var(--base-font);
         }
 
-        p, h3, saint, evolution {
-            text-shadow: var(--text-effect);
-            -webkit-text-stroke: var(--stroke-effect);
-        }
-
         .accessibility-panel {
             position: fixed;
             top: 10px;
             left: 10px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            background: rgba(30, 30, 45, 0.9);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .action-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
             z-index: 1000;
             display: flex;
             gap: 8px;
@@ -81,6 +91,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .acc-btn:hover {
+            background: rgba(184, 134, 11, 0.25);
+            transform: translateY(-2px);
         }
 
         .acc-btn.active {
@@ -191,10 +206,6 @@
             text-align: justify;
         }
 
-        .textheader .shape {
-            width: 100%;
-        }
-
         .timeline {
             border-left: 3px solid var(--border-color);
             padding-left: 40px;
@@ -299,6 +310,7 @@
             right: -10%; 
             top: 35%; 
             z-index: -1; 
+            opacity: 0.35;
         }
         .cloud-2 { 
             width: 550px; 
@@ -308,6 +320,7 @@
             top: -35%; 
             transform: translateX(-50%);
             z-index: -1; 
+            opacity: 0.35;
         }
         .cloud-3 { 
             width: 750px; 
@@ -317,6 +330,7 @@
             top: 35%; 
             z-index: -1; 
             transform: scaleX(-1);
+            opacity: 0.35;
         }
 
         @media (max-width: 900px) {
@@ -341,7 +355,6 @@
                 text-align: center;
             }
 
-            /* Títulos maiores ajustados para mobile */
             saint {
                 font-size: 2.4rem;
                 letter-spacing: 1.5px;
@@ -371,8 +384,6 @@
                 margin-left: 0;
                 display: flex;
                 overflow-x: auto;
-                gap: 30px;
-                padding-bottom: 30px;
                 scroll-behavior: smooth;
                 -webkit-overflow-scrolling: touch;
             }
@@ -388,7 +399,7 @@
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
-                top: -58px;
+                top: 0;
                 text-align: center;
                 width: auto;
                 white-space: nowrap;
@@ -402,7 +413,6 @@
             }
 
             .timeline .event:after {
-                content: '';
                 position: absolute;
                 left: 50%;
                 top: -39px;
@@ -451,6 +461,18 @@
                 width: 75%;
                 top: -25%;
             }
+
+            .accessibility-panel,
+            .action-panel {
+                padding: 6px 10px;
+                gap: 6px;
+            }
+
+            .acc-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1.05rem;
+            }
         }
 
         @media (max-width: 900px) {
@@ -480,6 +502,15 @@
         </button>
     </div>
 
+    <div class="action-panel">
+        <button class="acc-btn" id="btn-faq" title="Perguntas Frequentes">
+            <i class="fas fa-question"></i>
+        </button>
+        <button class="acc-btn" id="btn-home" title="Voltar à Página Inicial">
+            <i class="fas fa-home"></i>
+        </button>
+    </div>
+
     <section class="header">
         <div class="header-content">
             <section class="header-left">
@@ -489,11 +520,15 @@
                 </div>
                 <div class="textheader">
                     <div class="shape"></div>
-                    <p id="text-target">A Era Mitológica foi o tempo primordial em que as lendas nasceram e os alicerces do mundo foram erguidos. Nesse período remoto, os deuses caminhavam entre os homens, interferiam diretamente no destino mortal e disputavam entre si o domínio da Terra e dos céus.</p>
-                    <p id="text-target">No ápice do poder divino estava Zeus, soberano supremo e senhor dos céus, cujo trono governava o futuro reino das divindades no Olimpo. Nos oceanos reinava seu irmão Poseidon, mestre absoluto das águas e das profundezas marinhas. Já Hades recebeu o encargo de guardar o submundo, governando os mortos em seu vasto império sombrio, onde também repousavam os Campos Elísios.</p>
-                    <p id="text-target">Entre os deuses ligados ao destino humano estavam Athena e seu irmão Ares. Ambos foram incumbidos de conduzir a humanidade no plano terreno, mas representavam visões opostas sobre o caminho dos homens.</p>
-                    <p id="text-target">Athena defendia a sabedoria, a justiça, a estratégia e a proteção dos inocentes. Ares, por sua vez, personificava a guerra brutal, o conflito incessante e a conquista pela força. Da colisão entre esses ideais nasceram as primeiras grandes guerras da humanidade, batalhas tão grandiosas que atravessaram os séculos e foram eternizadas como mitos.</p>
-                    <p id="text-target">Foi nesse cenário de glória e ruína que surgiram os primeiros heróis, campeões escolhidos pelos deuses, precursores daqueles que um dia seriam conhecidos como Cavaleiros Sagrados.</p>
+                    <div id="text-container">
+                        <p>No ápice do poder divino estava Zeus, soberano supremo e senhor dos céus, cujo trono governava o futuro reino das divindades no Olimpo. Nos oceanos reinava seu irmão Poseidon, mestre absoluto das águas e das profundezas marinhas. Já Hades recebeu o encargo de guardar o submundo, governando os mortos em seu vasto império sombrio, onde também repousavam os Campos Elísios.</p>
+                        <br><br>
+                        <p>Entre os deuses ligados ao destino humano estavam Atena e seu irmão Ares. Ambos foram incumbidos de conduzir a humanidade no plano terreno, mas representavam visões opostas sobre o caminho dos homens.</p>
+                        <br><br>
+                        <p>Atena defendia a sabedoria, a justiça, a estratégia e a proteção dos inocentes. Ares, por sua vez, personificava a guerra brutal, o conflito incessante e a conquista pela força. Da colisão entre esses ideais nasceram as primeiras grandes guerras da humanidade, batalhas tão grandiosas que atravessaram os séculos e foram eternizadas como mitos.</p>
+                        <br><br>
+                        <p>Foi nesse cenário de glória e ruína que surgiram os primeiros heróis, campeões escolhidos pelos deuses, precursores daqueles que um dia seriam conhecidos como Cavaleiros Sagrados.</p>
+                    </div>
                 </div>
             </section>
 
@@ -533,7 +568,7 @@
                     </li>
                     <li class="event" data-date="Século XVII" onclick="highlight(this, 8)">
                         <h3>A Gigantomaquia</h3>
-                        <p>A ascensão de Talos reverberou pelas profundezas do mundo, e tal ressonância alcançou um ser esquecido desde a Era Mitológica: Pontos, o primordial dos mares antigos. Desperto de seu sono milenar, ele viu no caos uma oportunidade para restaurar antigas forças banidas pelo tempo. </p>
+                        <p>A ascensão de Talos reverberou pelas profundezas do mundo, e tal ressonância alcançou um ser esquecido desde a Era Mitológica: Pontos, o primordial dos mares antigos. Desperto de seu sono milenar, ele viu no caos uma oportunidade para restaurar antigas forças banidas pelo tempo.</p>
                     </li>
                     <li class="event" data-date="Atualidade" onclick="highlight(this, 9)">
                         <h3>DIAS ATUAIS</h3>
@@ -544,9 +579,9 @@
         </div>
     </section>
 
-    <img src="https://cdn.discordapp.com/attachments/1482873193470365878/1497815798683537538/Saint_Seiya_7.png?ex=69eee52a&is=69ed93aa&hm=da63afb5aabd7e2880a9d619346d22370d0ba992be3df8f4e6fd91a61c85efbb" class="cloud-1" alt="">
-    <img src="https://cdn.discordapp.com/attachments/1482873193470365878/1497816231904935986/Saint_Seiya_8.png?ex=69eee591&is=69ed9411&hm=2745a19b0c001dd7ffbae2d6bd918365423de20d2fe0ce6782f608ebaecfdee3" class="cloud-2" alt="">
-    <img src="https://cdn.discordapp.com/attachments/1482873193470365878/1497815798683537538/Saint_Seiya_7.png?ex=69eee52a&is=69ed93aa&hm=da63afb5aabd7e2880a9d619346d22370d0ba992be3df8f4e6fd91a61c85efbb" class="cloud-3" alt="">
+    <img src="https://www.dropbox.com/scl/fi/lilozld3mqanm1g5b29xg/nuvens-bottom.png?rlkey=vu7u2vuu4my2lww9g977x89mu&st=a3cqk77g&raw=1" class="cloud-1" alt="">
+    <img src="https://www.dropbox.com/scl/fi/82u0ubhw58cz0shrf1z25/nuvem-top.png?rlkey=r5z0ffofjzvvz9skyfrol6bym&st=6bd90gyc&raw=1" class="cloud-2" alt="">
+    <img src="https://www.dropbox.com/scl/fi/lilozld3mqanm1g5b29xg/nuvens-bottom.png?rlkey=vu7u2vuu4my2lww9g977x89mu&st=a3cqk77g&raw=1" class="cloud-3" alt="">
 
     <script>
         const html = document.documentElement;
@@ -588,16 +623,74 @@
         });
 
         const dataArchive = {
-            0: { saint: "A ERA", evolution: "MITOLÓGICA", text: "No ápice do poder divino estava Zeus, soberano supremo e senhor dos céus, cujo trono governava o futuro reino das divindades no Olimpo. Nos oceanos reinava seu irmão Poseidon, mestre absoluto das águas e das profundezas marinhas. Já Hades recebeu o encargo de guardar o submundo, governando os mortos em seu vasto império sombrio, onde também repousavam os Campos Elísios.\n \n Entre os deuses ligados ao destino humano estavam Atena e seu irmão Ares. Ambos foram incumbidos de conduzir a humanidade no plano terreno, mas possuíam visões opostas sobre o caminho dos homens. Ares acreditava que a humanidade deveria ser guiada pela força, sob a lei do mais forte. Atena defendia a sabedoria, a justiça, a estratégia e a proteção dos inocentes.\n \n A colisão entre esses ideais fez surgir inúmeros confrontos, moldando a história da humanidade e dando origem às primeiras grandes guerras. Batalhas tão grandiosas atravessaram os séculos e foram eternizadas como mitos.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            1: { saint: "A PRIMEIRA", evolution: "GUERRA SANTA", text: "A deusa Atena enxergava os mortais de forma diferente dos demais membros do panteão. Por isso, abdicou de seu corpo imortal para reencarnar entre os humanos, preservando em si o espírito e o cosmo divino. Durante incontáveis eras, viveu e lutou lado a lado com os maiores guerreiros da humanidade. \n \n Ares, sua contraparte, escolheu outro caminho. Selecionou guerreiros poderosos e os infestou com sua fúria e sede de sangue, dando origem aos famigerados Berserkers. Sob seu comando ergueram-se legiões, e a balança do mundo parecia pender cada vez mais para o Deus da Guerra. \n \n Até que Atena, com a ajuda de uma tribo mitológica conhecida como os Lemurianos, uniu a alquimia ancestral daquele povo ao próprio sangue divino, forjando assim as armaduras que seriam conhecidas através dos séculos. \n \n Os Cavaleiros de Ouro foram os primeiros a surgir, destinados a enfrentar a tirania implacável de Ares. No confronto derradeiro, o próprio deus desceu dos céus para combater Atena e seus fiéis guerreiros. \n \n Na mais sanguinária de todas as guerras, os cavaleiros triunfaram com o auxílio das Doze Armas de Libra, expulsando Ares do plano terreno. Derrotado, o deus fugiu para as profundezas do submundo, buscando refúgio junto a Hades.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            2: { saint: "O GRANDE", evolution: "DILÚVIO", text: "O mundo que conhecemos jamais esteve tão próximo do fim quanto no dia em que o Deus dos mares tentou expandir seu domínio à força. As marés se ergueram furiosas e engoliram vastas porções da terra, arrastando reinos inteiros para o abismo. \n \n A civilização quase sucumbiu, não fosse a intervenção da deusa protetora, Atena, e de seus fiéis Cavaleiros de Ouro. Eles desceram às profundezas do oceano para enfrentar Poseidon e seus Marinas, guerreiros temíveis, forjados para o combate e soberanos em seu próprio reino. \n \n Com o auxílio da deusa, os cavaleiros conseguiram superar tamanha desvantagem e derrotar o Deus dos mares. Sua alma foi então selada em uma ânfora sagrada, escondida onde a água apenas poderia existir em estado sólido: no extremo norte da Sibéria. \n \n Ali permaneceu adormecido o poder da divindade, em uma tentativa desesperada de impedir que os oceanos voltassem a engolir o mundo com a fúria de suas águas.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            3: { saint: "A LENDA DO", evolution: "PÉGASO", text: "Durante a guerra, o corpo do Senhor do Mundo dos Mortos foi ferido pela primeira vez pelo Cavaleiro da constelação de Pégaso. Marcado por esse feito, Hades decidiu manter seu verdadeiro corpo selado nos Elísios, repousando vazio de alma em um túmulo sagrado. \n \n Desde então, sempre que retorna, o deus desperta tomando para si o corpo do humano mais puro existente em sua era, pois sem um receptáculo físico não pode caminhar livremente pelo mundo dos homens. \n \n Hades foi derrotado nessa batalha. Desse confronto nasceu a guerra eterna entre Atena e Hades, conflito destinado a reacender-se ao longo dos séculos e tornar-se o centro de inúmeras crises futuras.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            4: { saint: "A GUERRA DE", evolution: "ÁTICA", text: "Após a primeira Guerra Santa contra Poseidon, Atena selou as almas do Deus dos Mares e de seus Marinas, enviando-as para Graad Azul, sob a vigilância de alguns cavaleiros. Com o passar do tempo, esses guardiões renegaram a deusa e passaram a ser chamados de Guerreiros Azuis, pois, coincidentemente, todas as suas armaduras possuíam essa cor. \n \n Corrompidos, auxiliaram o Rei dos Mares a reconquistar sua liberdade, dando início a um novo conflito. Poseidon desejava fazer Atlântida emergir novamente das profundezas após séculos de silêncio. \n \n Em um grande embate, o deus foi derrotado outra vez. Seu tridente foi então selado e ocultado na prisão do Cabo Súnion, para que jamais voltasse a ameaçar a Terra. \n \n Desde esse episódio, o nome dos Guerreiros Azuis, descendentes dos antigos cavaleiros enviados ao extremo norte, caiu em desgraça perante a história.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            5: { saint: "A BATALHA DA", evolution: "DISCÓRDIA", text: "Éris iniciou sua vingança revivendo e possuindo a mãe falecida da deusa Atena naquele século, demonstrando o caráter cruel e sádico que lhe era próprio. Ao lado de suas Dríades, espalhou o caos pelo mundo como forma de represália. \n \n Também trouxe de volta diversos cavaleiros de Atena mortos em guerras passadas, despertando neles toda a amargura de terem sido esquecidos no abraço silencioso da morte. \n \n Seguiu-se um embate sanguinário, no qual cavaleiros antigos e novos lutaram entre si pela primeira vez. Foi nesse tempo que surgiu uma nova figura: um jovem Cavaleiro de Cavalo Menor, que auxiliou Pégaso e Atena a derrotarem Eris. \n \n Em seus últimos momentos na Terra, a deusa lançou uma maldição sobre a Armadura de Cavalo Menor, derramando nela todo o seu rancor. Desde então, todo aquele que a vestir estaria destinado a uma morte trágica e prematura.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            6: { saint: "ENTRE", evolution: "O SONO E A MORTE", text: "Essa foi, de longe, a guerra mais unilateral já enfrentada pelos guerreiros da justiça, e também aquela em que mais cavaleiros pereceram. Pouquíssimos sobreviveram ao conflito brutal, sobretudo diante do poder esmagador dos deuses gêmeos. \n \n Com uma intervenção divina de Athena e o auxílio de Poseidon, os cavaleiros conseguiram derrotar Hypnos e Thanatos, abrindo caminho até o submundo. \n \n Lá, desceram às profundezas para restaurar o selo destinado a conter Hades antes que ele pudesse ascender novamente ao mundo humano. \n \n Entretanto, a ajuda de Poseidon custaria bem caro nos séculos seguintes.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            7: { saint: "NOVA", evolution: "ATLÂNTIDA", text: "A Guerra Santa travada contra Hades séculos antes custara caro ao Santuário. A ordem de Atena ainda encontrava dificuldades para erguer uma nova geração de guerreiros, e poucos cavaleiros possuíam real preparo para o conflito que se aproximava. \n \n Percebendo essa fragilidade, Poseidon estendeu sua influência até um dos cativos mantidos na prisão onde seu tridente permanecia oculto. Ali, ao encontrar a arma sagrada, Talos despertou para um poder ancestral adormecido. \n \n Como arauto do Deus dos Mares, trouxe de volta os vestígios de Atlântida, erguindo gigantescos pilares destinados a sustentar os oceanos e restaurar a antiga supremacia marítima. \n \n Entretanto, consumido pela própria ambição, Talos traiu o deus que lhe concedera poder e tentou governar por conta própria. No desfecho da guerra, foi derrotado pelos cavaleiros de Atena, e o sonho de uma Nova Atlântida ruiu mais uma vez sob as águas.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            8: { saint: "A", evolution: "Gigantomaquia", text: "Foi então que deu início ao retorno dos Titãs, começando por despertar seus primeiros instrumentos de guerra: os Gigantes. Tida como extinta pelos homens e até pelos deuses, essa raça colossal permanecia apenas adormecida sob os abismos oceânicos, selada pela própria antiguidade. \n \n Das fendas submarinas surgiram monstros de pedra, carne e fúria, capazes de abalar ilhas inteiras com seus passos. O mar tornou-se berço de horrores ancestrais, e os céus voltaram a temer uma guerra que julgavam enterrada nos mitos. \n \n Assim teve início a Gigantomaquia dos novos tempos, quando as correntes do oceano romperam o silêncio e o mundo mais uma vez encarou a sombra das eras primordiais. \n \n Atena ainda não havia reencarnado naquele século, e os homens de seu exército precisaram marchar sem a presença de seu maior farol. Ainda assim, os valentes Cavaleiros de Ouro daquela geração ergueram-se contra o impossível e, após violenta batalha, lançaram novamente os Gigantes às fendas oceânicas de onde haviam surgido. \n \n Os desígnios de Ponto não foram destruídos, apenas adiados.", bg: "url('https://i.imgur.com/3FwweI8.png')" },
-            9: { saint: "DIAS", evolution: "ATUAIS", text: "Vinda de um pequeno orfanato da Beócia, Alana foi descoberta pelos emissários do Santuário e conduzida às pressas para a Grécia, arrancada da vida simples que conhecia até então. Para trás, deixou seu irmão gêmeo, um jovem de coração puro e natureza ainda mais doce que a dela, a quem sempre protegia com firmeza diante das durezas do mundo. \n \n Agora, rumores de uma nova Guerra Santa espalham-se com crescente força entre homens e deuses. A geração passada enfraqueceu, e aquela que defenderá Atena ainda precisa ser forjada. Um novo tempo se aproxima, e com ele nascerá a necessidade de novos heróis.", bg: "url('https://i.imgur.com/3FwweI8.png')" }
+            0: { saint: "A ERA", evolution: "MITOLÓGICA", text: `No ápice do poder divino estava Zeus, soberano supremo e senhor dos céus, cujo trono governava o futuro reino das divindades no Olimpo. Nos oceanos reinava seu irmão Poseidon, mestre absoluto das águas e das profundezas marinhas. Já Hades recebeu o encargo de guardar o submundo, governando os mortos em seu vasto império sombrio, onde também repousavam os Campos Elísios.
+
+Entre os deuses ligados ao destino humano estavam Atena e seu irmão Ares. Ambos foram incumbidos de conduzir a humanidade no plano terreno, mas representavam visões opostas sobre o caminho dos homens.
+
+Atena defendia a sabedoria, a justiça, a estratégia e a proteção dos inocentes. Ares, por sua vez, personificava a guerra brutal, o conflito incessante e a conquista pela força. Da colisão entre esses ideais nasceram as primeiras grandes guerras da humanidade, batalhas tão grandiosas que atravessaram os séculos e foram eternizadas como mitos.
+
+Foi nesse cenário de glória e ruína que surgiram os primeiros heróis, campeões escolhidos pelos deuses, precursores daqueles que um dia seriam conhecidos como Cavaleiros Sagrados.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            1: { saint: "A PRIMEIRA", evolution: "GUERRA SANTA", text: `A deusa Atena enxergava os mortais de forma diferente dos demais membros do panteão. Por isso, abdicou de seu corpo imortal para reencarnar entre os humanos, preservando em si o espírito e o cosmo divino. Durante incontáveis eras, viveu e lutou lado a lado com os maiores guerreiros da humanidade.
+
+Ares, sua contraparte, escolheu outro caminho. Selecionou guerreiros poderosos e os infestou com sua fúria e sede de sangue, dando origem aos famigerados Berserkers. Sob seu comando ergueram-se legiões, e a balança do mundo parecia pender cada vez mais para o Deus da Guerra.
+
+Até que Atena, com a ajuda de uma tribo mitológica conhecida como os Lemurianos, uniu a alquimia ancestral daquele povo ao próprio sangue divino, forjando assim as armaduras que seriam conhecidas através dos séculos.
+
+Os Cavaleiros de Ouro foram os primeiros a surgir, destinados a enfrentar a tirania implacável de Ares. No confronto derradeiro, o próprio deus desceu dos céus para combater Atena e seus fiéis guerreiros.
+
+Na mais sanguinária de todas as guerras, os cavaleiros triunfaram com o auxílio das Doze Armas de Libra, expulsando Ares do plano terreno. Derrotado, o deus fugiu para as profundezas do submundo, buscando refúgio junto a Hades.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            2: { saint: "O GRANDE", evolution: "DILÚVIO", text: `O mundo que conhecemos jamais esteve tão próximo do fim quanto no dia em que o Deus dos mares tentou expandir seu domínio à força. As marés se ergueram furiosas e engoliram vastas porções da terra, arrastando reinos inteiros para o abismo.
+
+A civilização quase sucumbiu, não fosse a intervenção da deusa protetora, Atena, e de seus fiéis Cavaleiros de Ouro. Eles desceram às profundezas do oceano para enfrentar Poseidon e seus Marinas, guerreiros temíveis, forjados para o combate e soberanos em seu próprio reino.
+
+Com o auxílio da deusa, os cavaleiros conseguiram superar tamanha desvantagem e derrotar o Deus dos mares. Sua alma foi então selada em uma ânfora sagrada, escondida onde a água apenas poderia existir em estado sólido: no extremo norte da Sibéria.
+
+Ali permaneceu adormecido o poder da divindade, em uma tentativa desesperada de impedir que os oceanos voltassem a engolir o mundo com a fúria de suas águas.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            3: { saint: "A LENDA DO", evolution: "PÉGASO", text: `Durante a guerra, o corpo do Senhor do Mundo dos Mortos foi ferido pela primeira vez pelo Cavaleiro da constelação de Pégaso. Marcado por esse feito, Hades decidiu manter seu verdadeiro corpo selado nos Elísios, repousando vazio de alma em um túmulo sagrado.
+
+Desde então, sempre que retorna, o deus desperta tomando para si o corpo do humano mais puro existente em sua era, pois sem um receptáculo físico não pode caminhar livremente pelo mundo dos homens.
+
+Hades foi derrotado nessa batalha. Desse confronto nasceu a guerra eterna entre Atena e Hades, conflito destinado a reacender-se ao longo dos séculos e tornar-se o centro de inúmeras crises futuras.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            4: { saint: "A GUERRA DE", evolution: "ÁTICA", text: `Após a primeira Guerra Santa contra Poseidon, Atena selou as almas do Deus dos Mares e de seus Marinas, enviando-as para Graad Azul, sob a vigilância de alguns cavaleiros. Com o passar do tempo, esses guardiões renegaram a deusa e passaram a ser chamados de Guerreiros Azuis, pois, coincidentemente, todas as suas armaduras possuíam essa cor.
+
+Corrompidos, auxiliaram o Rei dos Mares a reconquistar sua liberdade, dando início a um novo conflito. Poseidon desejava fazer Atlântida emergir novamente das profundezas após séculos de silêncio.
+
+Em um grande embate, o deus foi derrotado outra vez. Seu tridente foi então selado e ocultado na prisão do Cabo Súnion, para que jamais voltasse a ameaçar a Terra.
+
+Desde esse episódio, o nome dos Guerreiros Azuis, descendentes dos antigos cavaleiros enviados ao extremo norte, caiu em desgraça perante a história.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            5: { saint: "A BATALHA DA", evolution: "DISCÓRDIA", text: `Éris iniciou sua vingança revivendo e possuindo a mãe falecida da deusa Atena naquele século, demonstrando o caráter cruel e sádico que lhe era próprio. Ao lado de suas Dríades, espalhou o caos pelo mundo como forma de represália.
+
+Também trouxe de volta diversos cavaleiros de Atena mortos em guerras passadas, despertando neles toda a amargura de terem sido esquecidos no abraço silencioso da morte.
+
+Seguiu-se um embate sanguinário, no qual cavaleiros antigos e novos lutaram entre si pela primeira vez. Foi nesse tempo que surgiu uma nova figura: um jovem Cavaleiro de Cavalo Menor, que auxiliou Pégaso e Atena a derrotarem Eris.
+
+Em seus últimos momentos na Terra, a deusa lançou uma maldição sobre a Armadura de Cavalo Menor, derramando nela todo o seu rancor. Desde então, todo aquele que a vestir estaria destinado a uma morte trágica e prematura.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            6: { saint: "ENTRE", evolution: "O SONO E A MORTE", text: `Essa foi, de longe, a guerra mais unilateral já enfrentada pelos guerreiros da justiça, e também aquela em que mais cavaleiros pereceram. Pouquíssimos sobreviveram ao conflito brutal, sobretudo diante do poder esmagador dos deuses gêmeos.
+
+Com uma intervenção divina de Athena e o auxílio de Poseidon, os cavaleiros conseguiram derrotar Hypnos e Thanatos, abrindo caminho até o submundo.
+
+Lá, desceram às profundezas para restaurar o selo destinado a conter Hades antes que ele pudesse ascender novamente ao mundo humano.
+
+Entretanto, a ajuda de Poseidon custaria bem caro nos séculos seguintes.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            7: { saint: "NOVA", evolution: "ATLÂNTIDA", text: `A Guerra Santa travada contra Hades séculos antes custara caro ao Santuário. A ordem de Atena ainda encontrava dificuldades para erguer uma nova geração de guerreiros, e poucos cavaleiros possuíam real preparo para o conflito que se aproximava.
+
+Percebendo essa fragilidade, Poseidon estendeu sua influência até um dos cativos mantidos na prisão onde seu tridente permanecia oculto. Ali, ao encontrar a arma sagrada, Talos despertou para um poder ancestral adormecido.
+
+Como arauto do Deus dos Mares, trouxe de volta os vestígios de Atlântida, erguindo gigantescos pilares destinados a sustentar os oceanos e restaurar a antiga supremacia marítima.
+
+Entretanto, consumido pela própria ambição, Talos traiu o deus que lhe concedera poder e tentou governar por conta própria. No desfecho da guerra, foi derrotado pelos cavaleiros de Atena, e o sonho de uma Nova Atlântida ruiu mais uma vez sob as águas.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            8: { saint: "A", evolution: "GIGANTOMAQUIA", text: `Foi então que deu início ao retorno dos Titãs, começando por despertar seus primeiros instrumentos de guerra: os Gigantes. Tida como extinta pelos homens e até pelos deuses, essa raça colossal permanecia apenas adormecida sob os abismos oceânicos, selada pela própria antiguidade.
+
+Das fendas submarinas surgiram monstros de pedra, carne e fúria, capazes de abalar ilhas inteiras com seus passos. O mar tornou-se berço de horrores ancestrais, e os céus voltaram a temer uma guerra que julgavam enterrada nos mitos.
+
+Assim teve início a Gigantomaquia dos novos tempos, quando as correntes do oceano romperam o silêncio e o mundo mais uma vez encarou a sombra das eras primordiais.
+
+Atena ainda não havia reencarnado naquele século, e os homens de seu exército precisaram marchar sem a presença de seu maior farol. Ainda assim, os valentes Cavaleiros de Ouro daquela geração ergueram-se contra o impossível e, após violenta batalha, lançaram novamente os Gigantes às fendas oceânicas de onde haviam surgido.
+
+Os desígnios de Ponto não foram destruídos, apenas adiados.`, bg: "url('https://i.imgur.com/3FwweI8.png')" },
+            9: { saint: "DIAS", evolution: "ATUAIS", text: `Vinda de um pequeno orfanato da Beócia, Alana foi descoberta pelos emissários do Santuário e conduzida às pressas para a Grécia, arrancada da vida simples que conhecia até então. Para trás, deixou seu irmão gêmeo, um jovem de coração puro e natureza ainda mais doce que a dela, a quem sempre protegia com firmeza diante das durezas do mundo.
+
+Agora, rumores de uma nova Guerra Santa espalham-se com crescente força entre homens e deuses. A geração passada enfraqueceu, e aquela que defenderá Atena ainda precisa ser forjada. Um novo tempo se aproxima, e com ele nascerá a necessidade de novos heróis.`, bg: "url('https://i.imgur.com/3FwweI8.png')" }
         };
 
         function highlight(element, index) {
@@ -606,18 +699,26 @@
             
             const tS = document.getElementById('title-saint');
             const tE = document.getElementById('title-evolution');
-            const tT = document.getElementById('text-target');
+            const tT = document.getElementById('text-container');
 
             [tS, tE, tT].forEach(el => el.style.opacity = '0');
             
             setTimeout(() => {
                 tS.innerText = dataArchive[index].saint;
                 tE.innerText = dataArchive[index].evolution;
-                tT.innerText = dataArchive[index].text;
+                tT.innerHTML = dataArchive[index].text.replace(/\n/g, '<br><br>');
                 document.documentElement.style.setProperty('--dynamic-bg', dataArchive[index].bg);
                 [tS, tE, tT].forEach(el => el.style.opacity = '1');
             }, 400);
         }
+
+        document.getElementById('btn-faq').addEventListener('click', () => {
+            alert("Em breve você poderá consultar as dúvidas frequentes sobre o projeto!");
+        });
+
+        document.getElementById('btn-home').addEventListener('click', () => {
+            alert("Indisponível!");
+        });
 
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext("2d");
@@ -655,12 +756,14 @@
         const update = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
             const MAX_DISTANCE = (window.innerWidth + window.innerHeight) / 25;
 
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
 
-                for (let j = i; j < particles.length; j++) {
+                for (let j = i + 1; j < particles.length; j++) {
                     const distance = particles[i].position.distance(particles[j].position);
                     if (distance < MAX_DISTANCE) {
                         ctx.strokeStyle = document.body.getAttribute('data-theme') === 'dark' 
