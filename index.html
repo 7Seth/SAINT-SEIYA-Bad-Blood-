@@ -12,10 +12,10 @@
 
     <style>
         :root{--color:#B8860B;--font-titles:"Cinzel",serif;--font-text:"Cormorant Garamond",serif;--dynamic-bg:url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=9y07y0k4&raw=1');--gold-glow:#e8c477;--base-font:18px;--bg-x:0px;--bg-y:0px}
-        [data-theme="light"]{--bg-body:#f8f4eb;--text-color:#2c2a35;--border-color:rgba(184,134,11,0.3);--canvas-color:rgba(184,134,11,0.4);--ev-bg:rgba(255,255,255,0.6)}
-        [data-theme="dark"]{--bg-body:#060716;--text-color:#e0d9c0;--border-color:rgba(201,162,90,0.3);--canvas-color:rgba(255,255,255,0.5);--ev-bg:rgba(255,255,255,0.08)}
+        [data-theme="light"]{--bg-body:#f8f4eb;--text-color:#2c2a35;--border-color:rgba(184,134,11,0.3);--ev-bg:rgba(255,255,255,0.6)}
+        [data-theme="dark"]{--bg-body:#060716;--text-color:#e0d9c0;--border-color:rgba(201,162,90,0.3);--ev-bg:rgba(255,255,255,0.08)}
         
-        body{background:var(--bg-body);color:var(--text-color);font-family:var(--font-text);margin:0;overflow-x:hidden;transition:background .5s,color .5s;cursor:url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=1eawbgp5&raw=1'),auto;font-size:var(--base-font); -webkit-text-stroke: 0.7px; text-shadow: 1px 1px 1px black}
+        body{background:var(--bg-body);color:var(--text-color);font-family:var(--font-text);margin:0;overflow-x:hidden;transition:background .5s,color .5s;cursor:url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=1eawbgp5&raw=1'),auto;font-size:var(--base-font)}
         
         .accessibility-panel,.action-panel{position:fixed;top:10px;z-index:1000;display:flex;gap:8px;background:rgba(30,30,45,0.9);padding:8px 12px;border-radius:8px;border:1px solid var(--color);box-shadow:0 4px 15px rgba(0,0,0,0.5)}
         .action-panel{right:10px}
@@ -37,7 +37,7 @@
         saint{font-size:3.2rem;letter-spacing:2px;line-height:1;font-weight:700;display:block}
         evolution{font-size:4.5rem;color:var(--color);display:block;margin-top:-5px;line-height:1;font-weight:900}
         
-        .textheader{font-size:1rem;line-height:1.4;text-align:justify}
+        .textheader{font-size:1rem;line-height:1.55;text-align:justify}
         .timeline{border-left:3px solid var(--border-color);padding-left:40px;margin-left:180px;list-style:none;position:relative}
         .timeline .event{position:relative;margin-bottom:35px;cursor:pointer;padding:15px;border-radius:10px;transition:.4s}
         .timeline .event.active{background:var(--ev-bg)}
@@ -48,25 +48,29 @@
         .timeline h3{font-family:var(--font-titles);color:var(--color);font-size:1.3rem;margin:0;font-weight:700}
         .timeline .event.active h3{font-size:1.6rem;color:#fff;text-shadow:0 0 12px var(--color)}
         .timeline p{font-size:0.95rem;margin-top:6px;text-shadow:0 0 10px rgba(232,196,119,0.7);letter-spacing:1px;font-weight:500}
-        
+
         canvas{position:fixed;top:0;left:0;z-index:-1;pointer-events:none}
-        .cloud-1{width:750px;position:absolute;right:-10%;top:99%;z-index:-1;opacity:0.35}
+        .cloud-1,.cloud-3{width:750px;position:absolute;right:-10%;top:99%;z-index:-1;opacity:0.35}
         .cloud-2{width:550px;position:absolute;left:50%;top:-35%;transform:translateX(-50%);z-index:-1;opacity:0.35}
-        .cloud-3{width:750px;position:absolute;left:-10%;top:99%;z-index:-1;transform:scaleX(-1);opacity:0.35}
+        .cloud-3{transform:scaleX(-1)}
 
         @media (max-width:900px){
             .header-content{flex-direction:column;gap:35px;padding:0 15px}
             .header-left{max-width:100%;padding:0 10px}
-            .tituloheader{text-align:center;margin-bottom:25px}
-            saint{font-size:2.1rem!important;letter-spacing:1.5px;line-height:1.05;word-break:break-word}
-            evolution{font-size:2.85rem!important;margin-top:-8px;letter-spacing:2px;line-height:1.05;word-break:break-word}
+            .tituloheader{text-align:center;margin-bottom:20px}
+            
+            saint{font-size:1.95rem!important;letter-spacing:1.2px;line-height:1.1}
+            evolution{font-size:2.65rem!important;margin-top:-6px;letter-spacing:1.8px;line-height:1.05}
+            
             .textheader{font-size:1.02rem;line-height:1.6;padding:0 8px}
-            .timeline{border-left:none;border-top:3px solid var(--border-color);padding:60px 15px 20px;margin:0;display:flex;overflow-x:auto;gap:18px;scroll-behavior:smooth}
-            .timeline .event{min-width:285px;flex-shrink:0;padding:20px 18px;border-radius:12px;background:var(--ev-bg);border:1px solid var(--border-color)}
-            .timeline .event:before{left:50%;transform:translateX(-50%);top:-48px;font-size:0.82rem;background:var(--bg-body);padding:4px 12px;border-radius:20px;border:1px solid var(--color);z-index:5}
-            .timeline .event:after{left:50%;top:-32px;transform:translateX(-50%);width:16px;height:16px}
-            .timeline h3{text-align:center;font-size:1.28rem;margin-bottom:10px}
-            .timeline p{font-size:0.94rem;line-height:1.5;text-align:left}
+            
+            .timeline{border-left:none;border-top:3px solid var(--border-color);padding:70px 15px 30px;margin:0;display:flex;overflow-x:auto;gap:20px;scroll-behavior:smooth}
+            .timeline .event{min-width:290px;flex-shrink:0;padding:22px 18px;border-radius:12px;background:var(--ev-bg);border:1px solid var(--border-color)}
+            .timeline .event:before{left:50%;transform:translateX(-50%);top:-52px;font-size:0.8rem;background:var(--bg-body);padding:5px 14px;border-radius:20px;border:1px solid var(--color);z-index:5}
+            .timeline .event:after{left:50%;top:-33px;transform:translateX(-50%);width:15px;height:15px}
+            .timeline h3{text-align:center;font-size:1.32rem;margin-bottom:12px}
+            .timeline p{font-size:0.95rem;line-height:1.55;text-align:left}
+            
             .textheader p,.timeline p{overflow-wrap:break-word;word-wrap:break-word;hyphens:auto}
             .cloud-1,.cloud-2,.cloud-3{opacity:0.12}
         }
@@ -132,24 +136,54 @@
     <img src="https://www.dropbox.com/scl/fi/lilozld3mqanm1g5b29xg/nuvens-bottom.png?rlkey=vu7u2vuu4my2lww9g977x89mu&st=a3cqk77g&raw=1" class="cloud-3" alt="">
 
     <script>
-        const html=document.documentElement;let fontLevel=1;
-        function setFontSize(l){fontLevel=l;const s=['0.9rem','1rem','1.12rem'];html.style.fontSize=s[l];document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('active'));if(l===0)document.getElementById('font-small').classList.add('active');if(l===1)document.getElementById('font-medium').classList.add('active');if(l===2)document.getElementById('font-large').classList.add('active')}
-        
-        const themeToggle=document.getElementById('theme-toggle'),themeIcon=document.getElementById('theme-icon');
-        function toggleTheme(){const c=document.body.getAttribute('data-theme'),n=c==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);localStorage.setItem('theme',n);themeIcon.classList.toggle('fa-moon',n==='dark');themeIcon.classList.toggle('fa-sun',n==='light')}
-        themeToggle.addEventListener('click',toggleTheme);
+        const html = document.documentElement;
+        let fontLevel = 1;
 
-        window.addEventListener('load',()=>{const s=localStorage.getItem('theme')||'light';document.body.setAttribute('data-theme',s);themeIcon.classList.toggle('fa-moon',s==='dark');themeIcon.classList.toggle('fa-sun',s==='light');createParallaxBackground()});
+        function setFontSize(level) {
+            fontLevel = level;
+            const sizes = ['0.92rem', '1rem', '1.09rem'];
+            html.style.fontSize = sizes[level];
+            document.querySelectorAll('.acc-btn').forEach(btn => btn.classList.remove('active'));
+            if(level === 0) document.getElementById('font-small').classList.add('active');
+            if(level === 1) document.getElementById('font-medium').classList.add('active');
+            if(level === 2) document.getElementById('font-large').classList.add('active');
+        }
 
-        const dataArchive={
-            0:{saint:"A ERA",evolution:"MITOLÓGICA",text:`No ápice do poder divino estava Zeus, soberano supremo e senhor dos céus, cujo trono governava o futuro reino das divindades no Olimpo. Nos oceanos reinava seu irmão Poseidon, mestre absoluto das águas e das profundezas marinhas. Já Hades recebeu o encargo de guardar o submundo, governando os mortos em seu vasto império sombrio, onde também repousavam os Campos Elísios.
+        document.getElementById('font-small').addEventListener('click', () => setFontSize(0));
+        document.getElementById('font-medium').addEventListener('click', () => setFontSize(1));
+        document.getElementById('font-large').addEventListener('click', () => setFontSize(2));
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function toggleTheme() {
+            const current = document.body.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeIcon.classList.toggle('fa-moon', newTheme === 'dark');
+            themeIcon.classList.toggle('fa-sun', newTheme === 'light');
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', saved);
+            themeIcon.classList.toggle('fa-moon', saved === 'dark');
+            themeIcon.classList.toggle('fa-sun', saved === 'light');
+            createParallaxBackground();
+        });
+
+        const dataArchive = {
+            0: {saint:"A ERA", evolution:"MITOLÓGICA", text:`No ápice do poder divino estava Zeus, soberano supremo e senhor dos céus, cujo trono governava o futuro reino das divindades no Olimpo. Nos oceanos reinava seu irmão Poseidon, mestre absoluto das águas e das profundezas marinhas. Já Hades recebeu o encargo de guardar o submundo, governando os mortos em seu vasto império sombrio, onde também repousavam os Campos Elísios.
 
 Entre os deuses ligados ao destino humano estavam Atena e seu irmão Ares. Ambos foram incumbidos de conduzir a humanidade no plano terreno, mas representavam visões opostas sobre o caminho dos homens.
 
 Atena defendia a sabedoria, a justiça, a estratégia e a proteção dos inocentes. Ares, por sua vez, personificava a guerra brutal, o conflito incessante e a conquista pela força. Da colisão entre esses ideais nasceram as primeiras grandes guerras da humanidade, batalhas tão grandiosas que atravessaram os séculos e foram eternizadas como mitos.
 
-Foi nesse cenário de glória e ruína que surgiram os primeiros heróis, campeões escolhidos pelos deuses, precursores daqueles que um dia seriam conhecidos como Cavaleiros Sagrados.`,bg:"url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=1eawbgp5&raw=1')"},
-            1:{saint:"A PRIMEIRA",evolution:"GUERRA SANTA",text:`A deusa Atena enxergava os mortais de forma diferente dos demais membros do panteão. Por isso, abdicou de seu corpo imortal para reencarnar entre os humanos, preservando em si o espírito e o cosmo divino. Durante incontáveis eras, viveu e lutou lado a lado com os maiores guerreiros da humanidade.
+Foi nesse cenário de glória e ruína que surgiram os primeiros heróis, campeões escolhidos pelos deuses, precursores daqueles que um dia seriam conhecidos como Cavaleiros Sagrados.`, bg:"url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=1eawbgp5&raw=1')"},
+            1: {saint:"A PRIMEIRA", evolution:"GUERRA SANTA", text:`A deusa Atena enxergava os mortais de forma diferente dos demais membros do panteão. Por isso, abdicou de seu corpo imortal para reencarnar entre os humanos, preservando em si o espírito e o cosmo divino. Durante incontáveis eras, viveu e lutou lado a lado com os maiores guerreiros da humanidade.
 
 Ares, sua contraparte, escolheu outro caminho. Selecionou guerreiros poderosos e os infestou com sua fúria e sede de sangue, dando origem aos famigerados Berserkers. Sob seu comando ergueram-se legiões, e a balança do mundo parecia pender cada vez mais para o Deus da Guerra.
 
@@ -157,48 +191,48 @@ Até que Atena, com a ajuda de uma tribo mitológica conhecida como os Lemuriano
 
 Os Cavaleiros de Ouro foram os primeiros a surgir, destinados a enfrentar a tirania implacável de Ares. No confronto derradeiro, o próprio deus desceu dos céus para combater Atena e seus fiéis guerreiros.
 
-Na mais sanguinária de todas as guerras, os cavaleiros triunfaram com o auxílio das Doze Armas de Libra, expulsando Ares do plano terreno. Derrotado, o deus fugiu para as profundezas do submundo, buscando refúgio junto a Hades.`,bg:"url('https://www.dropbox.com/scl/fi/nw832vosdwl57dhbaca34/2.png?rlkey=bvphuc4o7i49pf7eqsp7o2xdg&st=5169il9i&raw=1')"},
-            2:{saint:"O GRANDE",evolution:"DILÚVIO",text:`O mundo que conhecemos jamais esteve tão próximo do fim quanto no dia em que o Deus dos mares tentou expandir seu domínio à força. As marés se ergueram furiosas e engoliram vastas porções da terra, arrastando reinos inteiros para o abismo.
+Na mais sanguinária de todas as guerras, os cavaleiros triunfaram com o auxílio das Doze Armas de Libra, expulsando Ares do plano terreno. Derrotado, o deus fugiu para as profundezas do submundo, buscando refúgio junto a Hades.`, bg:"url('https://www.dropbox.com/scl/fi/nw832vosdwl57dhbaca34/2.png?rlkey=bvphuc4o7i49pf7eqsp7o2xdg&st=5169il9i&raw=1')"},
+            2: {saint:"O GRANDE", evolution:"DILÚVIO", text:`O mundo que conhecemos jamais esteve tão próximo do fim quanto no dia em que o Deus dos mares tentou expandir seu domínio à força. As marés se ergueram furiosas e engoliram vastas porções da terra, arrastando reinos inteiros para o abismo.
 
 A civilização quase sucumbiu, não fosse a intervenção da deusa protetora, Atena, e de seus fiéis Cavaleiros de Ouro. Eles desceram às profundezas do oceano para enfrentar Poseidon e seus Marinas, guerreiros temíveis, forjados para o combate e soberanos em seu próprio reino.
 
 Com o auxílio da deusa, os cavaleiros conseguiram superar tamanha desvantagem e derrotar o Deus dos mares. Sua alma foi então selada em uma ânfora sagrada, escondida onde a água apenas poderia existir em estado sólido: no extremo norte da Sibéria.
 
-Ali permaneceu adormecido o poder da divindade, em uma tentativa desesperada de impedir que os oceanos voltassem a engolir o mundo com a fúria de suas águas.`,bg:"url('https://www.dropbox.com/scl/fi/2xp29on8ym0xwnj4ld7j6/3.png?rlkey=tuui9mteh9nhkxhgyzmpqh8lb&st=9pdbpfz1&raw=1')"},
-            3:{saint:"A LENDA DO",evolution:"PÉGASO",text:`Durante a guerra, o corpo do Senhor do Mundo dos Mortos foi ferido pela primeira vez pelo Cavaleiro da constelação de Pégaso. Marcado por esse feito, Hades decidiu manter seu verdadeiro corpo selado nos Elísios, repousando vazio de alma em um túmulo sagrado.
+Ali permaneceu adormecido o poder da divindade, em uma tentativa desesperada de impedir que os oceanos voltassem a engolir o mundo com a fúria de suas águas.`, bg:"url('https://www.dropbox.com/scl/fi/2xp29on8ym0xwnj4ld7j6/3.png?rlkey=tuui9mteh9nhkxhgyzmpqh8lb&st=9pdbpfz1&raw=1')"},
+            3: {saint:"A LENDA DO", evolution:"PÉGASO", text:`Durante a guerra, o corpo do Senhor do Mundo dos Mortos foi ferido pela primeira vez pelo Cavaleiro da constelação de Pégaso. Marcado por esse feito, Hades decidiu manter seu verdadeiro corpo selado nos Elísios, repousando vazio de alma em um túmulo sagrado.
 
 Desde então, sempre que retorna, o deus desperta tomando para si o corpo do humano mais puro existente em sua era, pois sem um receptáculo físico não pode caminhar livremente pelo mundo dos homens.
 
-Hades foi derrotado nessa batalha. Desse confronto nasceu a guerra eterna entre Atena e Hades, conflito destinado a reacender-se ao longo dos séculos e tornar-se o centro de inúmeras crises futuras.`,bg:"url('https://www.dropbox.com/scl/fi/lg1cd9zfv0i9xi7i864rv/4.png?rlkey=cp963hl2az4jrnzkirz07kkh1&st=jhm6f2k5&raw=1')"},
-            4:{saint:"A GUERRA DE",evolution:"ÁTICA",text:`Após a primeira Guerra Santa contra Poseidon, Atena selou as almas do Deus dos Mares e de seus Marinas, enviando-as para Graad Azul, sob a vigilância de alguns cavaleiros. Com o passar do tempo, esses guardiões renegaram a deusa e passaram a ser chamados de Guerreiros Azuis, pois, coincidentemente, todas as suas armaduras possuíam essa cor.
+Hades foi derrotado nessa batalha. Desse confronto nasceu a guerra eterna entre Atena e Hades, conflito destinado a reacender-se ao longo dos séculos e tornar-se o centro de inúmeras crises futuras.`, bg:"url('https://www.dropbox.com/scl/fi/lg1cd9zfv0i9xi7i864rv/4.png?rlkey=cp963hl2az4jrnzkirz07kkh1&st=jhm6f2k5&raw=1')"},
+            4: {saint:"A GUERRA DE", evolution:"ÁTICA", text:`Após a primeira Guerra Santa contra Poseidon, Atena selou as almas do Deus dos Mares e de seus Marinas, enviando-as para Graad Azul, sob a vigilância de alguns cavaleiros. Com o passar do tempo, esses guardiões renegaram a deusa e passaram a ser chamados de Guerreiros Azuis, pois, coincidentemente, todas as suas armaduras possuíam essa cor.
 
 Corrompidos, auxiliaram o Rei dos Mares a reconquistar sua liberdade, dando início a um novo conflito. Poseidon desejava fazer Atlântida emergir novamente das profundezas após séculos de silêncio.
 
 Em um grande embate, o deus foi derrotado outra vez. Seu tridente foi então selado e ocultado na prisão do Cabo Súnion, para que jamais voltasse a ameaçar a Terra.
 
-Desde esse episódio, o nome dos Guerreiros Azuis, descendentes dos antigos cavaleiros enviados ao extremo norte, caiu em desgraça perante a história.`,bg:"url('https://www.dropbox.com/scl/fi/ayd9218c3okl5gnxyfxc6/5.png?rlkey=kyh9uumoxfomc9xhl0jpihodj&st=jfevmvqz&raw=1')"},
-            5:{saint:"A BATALHA DA",evolution:"DISCÓRDIA",text:`Éris iniciou sua vingança revivendo e possuindo a mãe falecida da deusa Atena naquele século, demonstrando o caráter cruel e sádico que lhe era próprio. Ao lado de suas Dríades, espalhou o caos pelo mundo como forma de represália.
+Desde esse episódio, o nome dos Guerreiros Azuis, descendentes dos antigos cavaleiros enviados ao extremo norte, caiu em desgraça perante a história.`, bg:"url('https://www.dropbox.com/scl/fi/ayd9218c3okl5gnxyfxc6/5.png?rlkey=kyh9uumoxfomc9xhl0jpihodj&st=jfevmvqz&raw=1')"},
+            5: {saint:"A BATALHA DA", evolution:"DISCÓRDIA", text:`Éris iniciou sua vingança revivendo e possuindo a mãe falecida da deusa Atena naquele século, demonstrando o caráter cruel e sádico que lhe era próprio. Ao lado de suas Dríades, espalhou o caos pelo mundo como forma de represália.
 
 Também trouxe de volta diversos cavaleiros de Atena mortos em guerras passadas, despertando neles toda a amargura de terem sido esquecidos no abraço silencioso da morte.
 
 Seguiu-se um embate sanguinário, no qual cavaleiros antigos e novos lutaram entre si pela primeira vez. Foi nesse tempo que surgiu uma nova figura: um jovem Cavaleiro de Cavalo Menor, que auxiliou Pégaso e Atena a derrotarem Eris.
 
-Em seus últimos momentos na Terra, a deusa lançou uma maldição sobre a Armadura de Cavalo Menor, derramando nela todo o seu rancor. Desde então, todo aquele que a vestir estaria destinado a uma morte trágica e prematura.`,bg:"url('https://www.dropbox.com/scl/fi/77080bold80v9stmo31at/6.png?rlkey=zhuur7bv5la9g530l2zefbv5y&st=tdirm27m&raw=1')"},
-            6:{saint:"ENTRE",evolution:"O SONO E A MORTE",text:`Essa foi, de longe, a guerra mais unilateral já enfrentada pelos guerreiros da justiça, e também aquela em que mais cavaleiros pereceram. Pouquíssimos sobreviveram ao conflito brutal, sobretudo diante do poder esmagador dos deuses gêmeos.
+Em seus últimos momentos na Terra, a deusa lançou uma maldição sobre a Armadura de Cavalo Menor, derramando nela todo o seu rancor. Desde então, todo aquele que a vestir estaria destinado a uma morte trágica e prematura.`, bg:"url('https://www.dropbox.com/scl/fi/77080bold80v9stmo31at/6.png?rlkey=zhuur7bv5la9g530l2zefbv5y&st=tdirm27m&raw=1')"},
+            6: {saint:"ENTRE", evolution:"O SONO E A MORTE", text:`Essa foi, de longe, a guerra mais unilateral já enfrentada pelos guerreiros da justiça, e também aquela em que mais cavaleiros pereceram. Pouquíssimos sobreviveram ao conflito brutal, sobretudo diante do poder esmagador dos deuses gêmeos.
 
 Com uma intervenção divina de Athena e o auxílio de Poseidon, os cavaleiros conseguiram derrotar Hypnos e Thanatos, abrindo caminho até o submundo.
 
 Lá, desceram às profundezas para restaurar o selo destinado a conter Hades antes que ele pudesse ascender novamente ao mundo humano.
 
-Entretanto, a ajuda de Poseidon custaria bem caro nos séculos seguintes.`,bg:"url('https://www.dropbox.com/scl/fi/oskobujuwv4t0k3rxtqos/7.png?rlkey=bmddi1b37hzx3ory01zn8i50b&st=1umf68kl&raw=1')"},
-            7:{saint:"NOVA",evolution:"ATLÂNTIDA",text:`A Guerra Santa travada contra Hades séculos antes custara caro ao Santuário. A ordem de Atena ainda encontrava dificuldades para erguer uma nova geração de guerreiros, e poucos cavaleiros possuíam real preparo para o conflito que se aproximava.
+Entretanto, a ajuda de Poseidon custaria bem caro nos séculos seguintes.`, bg:"url('https://www.dropbox.com/scl/fi/oskobujuwv4t0k3rxtqos/7.png?rlkey=bmddi1b37hzx3ory01zn8i50b&st=1umf68kl&raw=1')"},
+            7: {saint:"NOVA", evolution:"ATLÂNTIDA", text:`A Guerra Santa travada contra Hades séculos antes custara caro ao Santuário. A ordem de Atena ainda encontrava dificuldades para erguer uma nova geração de guerreiros, e poucos cavaleiros possuíam real preparo para o conflito que se aproximava.
 
 Percebendo essa fragilidade, Poseidon estendeu sua influência até um dos cativos mantidos na prisão onde seu tridente permanecia oculto. Ali, ao encontrar a arma sagrada, Talos despertou para um poder ancestral adormecido.
 
 Como arauto do Deus dos Mares, trouxe de volta os vestígios de Atlântida, erguindo gigantescos pilares destinados a sustentar os oceanos e restaurar a antiga supremacia marítima.
 
-Entretanto, consumido pela própria ambição, Talos traiu o deus que lhe concedera poder e tentou governar por conta própria. No desfecho da guerra, foi derrotado pelos cavaleiros de Atena, e o sonho de uma Nova Atlântida ruiu mais uma vez sob as águas.`,bg:"url('https://www.dropbox.com/scl/fi/vgsozapjo41wmkdfpdhhc/8.png?rlkey=igwepmdmk4kn94kjqnh81qk0m&st=yoolazi4&raw=1')"},
-            8:{saint:"A",evolution:"GIGANTOMAQUIA",text:`Foi então que deu início ao retorno dos Titãs, começando por despertar seus primeiros instrumentos de guerra: os Gigantes. Tida como extinta pelos homens e até pelos deuses, essa raça colossal permanecia apenas adormecida sob os abismos oceânicos, selada pela própria antiguidade.
+Entretanto, consumido pela própria ambição, Talos traiu o deus que lhe concedera poder e tentou governar por conta própria. No desfecho da guerra, foi derrotado pelos cavaleiros de Atena, e o sonho de uma Nova Atlântida ruiu mais uma vez sob as águas.`, bg:"url('https://www.dropbox.com/scl/fi/vgsozapjo41wmkdfpdhhc/8.png?rlkey=igwepmdmk4kn94kjqnh81qk0m&st=yoolazi4&raw=1')"},
+            8: {saint:"A", evolution:"GIGANTOMAQUIA", text:`Foi então que deu início ao retorno dos Titãs, começando por despertar seus primeiros instrumentos de guerra: os Gigantes. Tida como extinta pelos homens e até pelos deuses, essa raça colossal permanecia apenas adormecida sob os abismos oceânicos, selada pela própria antiguidade.
 
 Das fendas submarinas surgiram monstros de pedra, carne e fúria, capazes de abalar ilhas inteiras com seus passos. O mar tornou-se berço de horrores ancestrais, e os céus voltaram a temer uma guerra que julgavam enterrada nos mitos.
 
@@ -206,60 +240,94 @@ Assim teve início a Gigantomaquia dos novos tempos, quando as correntes do ocea
 
 Atena ainda não havia reencarnado naquele século, e os homens de seu exército precisaram marchar sem a presença de seu maior farol. Ainda assim, os valentes Cavaleiros de Ouro daquela geração ergueram-se contra o impossível e, após violenta batalha, lançaram novamente os Gigantes às fendas oceânicas de onde haviam surgido.
 
-Os desígnios de Ponto não foram destruídos, apenas adiados.`,bg:"url('https://www.dropbox.com/scl/fi/5rc1vbryk1j5ig5m01ttt/9.png?rlkey=ufwsrbg078nwrx1kh1q2c5dn7&st=no4gvbo7&raw=1')"},
-            9:{saint:"DIAS",evolution:"ATUAIS",text:`Vinda de um pequeno orfanato da Beócia, Alana foi descoberta pelos emissários do Santuário e conduzida às pressas para a Grécia, arrancada da vida simples que conhecia até então. Para trás, deixou seu irmão gêmeo, um jovem de coração puro e natureza ainda mais doce que a dela, a quem sempre protegia com firmeza diante das durezas do mundo.
+Os desígnios de Ponto não foram destruídos, apenas adiados.`, bg:"url('https://www.dropbox.com/scl/fi/5rc1vbryk1j5ig5m01ttt/9.png?rlkey=ufwsrbg078nwrx1kh1q2c5dn7&st=no4gvbo7&raw=1')"},
+            9: {saint:"DIAS", evolution:"ATUAIS", text:`Vinda de um pequeno orfanato da Beócia, Alana foi descoberta pelos emissários do Santuário e conduzida às pressas para a Grécia, arrancada da vida simples que conhecia até então. Para trás, deixou seu irmão gêmeo, um jovem de coração puro e natureza ainda mais doce que a dela, a quem sempre protegia com firmeza diante das durezas do mundo.
 
-Agora, rumores de uma nova Guerra Santa espalham-se com crescente força entre homens e deuses. A geração passada enfraqueceu, e aquela que defenderá Atena ainda precisa ser forjada. Um novo tempo se aproxima, e com ele nascerá a necessidade de novos heróis.`,bg:"url('https://www.dropbox.com/scl/fi/dh6z0b6iz4kgfq0021yr2/10.png?rlkey=gjltpmz952idlzj2yazjoo71d&st=q1p8r8pz&raw=1')"}
+Agora, rumores de uma nova Guerra Santa espalham-se com crescente força entre homens e deuses. A geração passada enfraqueceu, e aquela que defenderá Atena ainda precisa ser forjada. Um novo tempo se aproxima, e com ele nascerá a necessidade de novos heróis.`, bg:"url('https://www.dropbox.com/scl/fi/dh6z0b6iz4kgfq0021yr2/10.png?rlkey=gjltpmz952idlzj2yazjoo71d&st=q1p8r8pz&raw=1')"}
         };
 
-        function highlight(el,i){
-            document.querySelectorAll('.event').forEach(e=>e.classList.remove('active'));
+        function highlight(el, i){
+            document.querySelectorAll('.event').forEach(e => e.classList.remove('active'));
             el.classList.add('active');
-            const ts=document.getElementById('title-saint'),te=document.getElementById('title-evolution'),tt=document.getElementById('text-container');
-            [ts,te,tt].forEach(e=>e.style.opacity='0');
-            setTimeout(()=>{ts.innerText=dataArchive[i].saint;te.innerText=dataArchive[i].evolution;tt.innerHTML=dataArchive[i].text.replace(/\n/g,'<br><br>');document.documentElement.style.setProperty('--dynamic-bg',dataArchive[i].bg);[ts,te,tt].forEach(e=>e.style.opacity='1')},400)
+            const ts = document.getElementById('title-saint');
+            const te = document.getElementById('title-evolution');
+            const tt = document.getElementById('text-container');
+            [ts, te, tt].forEach(e => e.style.opacity = '0');
+            setTimeout(() => {
+                ts.innerText = dataArchive[i].saint;
+                te.innerText = dataArchive[i].evolution;
+                tt.innerHTML = dataArchive[i].text.replace(/\n/g, '<br><br>');
+                document.documentElement.style.setProperty('--dynamic-bg', dataArchive[i].bg);
+                [ts, te, tt].forEach(e => e.style.opacity = '1');
+            }, 400);
         }
 
-        document.getElementById('btn-faq').onclick=()=>alert("Em breve você poderá consultar as dúvidas frequentes sobre o projeto!");
-        document.getElementById('btn-home').onclick=()=>alert("Indisponível!");
+        document.getElementById('btn-faq').onclick = () => alert("Em breve você poderá consultar as dúvidas frequentes sobre o projeto!");
+        document.getElementById('btn-home').onclick = () => alert("Indisponível!");
 
         function createParallaxBackground(){
-            const h=document.querySelector('.header');
-            h.addEventListener('mousemove',e=>{
-                const r=h.getBoundingClientRect(),x=((e.clientX-r.left)/r.width-0.5)*2,y=((e.clientY-r.top)/r.height-0.5)*2;
-                h.style.setProperty('--bg-x',x*25+'px');
-                h.style.setProperty('--bg-y',y*18+'px');
+            const h = document.querySelector('.header');
+            h.addEventListener('mousemove', e => {
+                const r = h.getBoundingClientRect();
+                const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                h.style.setProperty('--bg-x', x*25 + 'px');
+                h.style.setProperty('--bg-y', y*18 + 'px');
             });
-            h.addEventListener('mouseleave',()=>{h.style.setProperty('--bg-x','0px');h.style.setProperty('--bg-y','0px')});
+            h.addEventListener('mouseleave', () => {
+                h.style.setProperty('--bg-x', '0px');
+                h.style.setProperty('--bg-y', '0px');
+            });
         }
 
-        const canvas=document.getElementById("canvas"),ctx=canvas.getContext("2d");
-        class Vec2 extends Array{constructor(...v){super(...(v.length===2?v:v.length===1?[v[0],v[0]]:[0,0]));this.x=this[0];this.y=this[1]}add(b){this[0]+=b[0];this[1]+=b[1]}distance(b){return Math.hypot(b[0]-this[0],b[1]-this[1])}}
-        class Particle{constructor(){this.speed=new Vec2(Math.random()-0.5,Math.random()-0.5);this.position=new Vec2(Math.random()*innerWidth,Math.random()*innerHeight);this.radius=Math.random()*4+1}update(){if(this.position[0]>innerWidth||this.position[0]<0)this.speed[0]*=-1;if(this.position[1]>innerHeight||this.position[1]<0)this.speed[1]*=-1;this.position.add(this.speed)}}
+        const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+        class Vec2 extends Array {
+            constructor(...v){super(...(v.length===2?v:v.length===1?[v[0],v[0]]:[0,0])); this.x=this[0]; this.y=this[1]}
+            add(b){this[0]+=b[0];this[1]+=b[1]}
+            distance(b){return Math.hypot(b[0]-this[0],b[1]-this[1])}
+        }
+        class Particle{
+            constructor(){
+                this.speed = new Vec2(Math.random()-0.5, Math.random()-0.5);
+                this.position = new Vec2(Math.random()*innerWidth, Math.random()*innerHeight);
+                this.radius = Math.random()*4 + 1;
+            }
+            update(){
+                if(this.position[0]>innerWidth || this.position[0]<0) this.speed[0]*=-1;
+                if(this.position[1]>innerHeight || this.position[1]<0) this.speed[1]*=-1;
+                this.position.add(this.speed);
+            }
+        }
         
-        let particles=[];for(let i=0;i<75;i++)particles.push(new Particle());
+        let particles = [];
+        for(let i=0; i<75; i++) particles.push(new Particle());
 
-        function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
+        function resize(){canvas.width=innerWidth; canvas.height=innerHeight}
         function update(){
             ctx.clearRect(0,0,canvas.width,canvas.height);
-            const md=(canvas.width+canvas.height)/25;
-            for(let i=0;i<particles.length;i++){
+            const md = (canvas.width + canvas.height)/25;
+            for(let i=0; i<particles.length; i++){
                 particles[i].update();
-                for(let j=i+1;j<particles.length;j++){
-                    const d=particles[i].position.distance(particles[j].position);
-                    if(d<md){
-                        ctx.strokeStyle=document.body.getAttribute('data-theme')==='dark'?`rgba(255,255,255,${1-d/md})`:`rgba(184,134,11,${1-d/md})`;
-                        ctx.beginPath();ctx.moveTo(...particles[i].position);ctx.lineTo(...particles[j].position);ctx.stroke();
+                for(let j=i+1; j<particles.length; j++){
+                    const d = particles[i].position.distance(particles[j].position);
+                    if(d < md){
+                        ctx.strokeStyle = document.body.getAttribute('data-theme')==='dark' ? `rgba(255,255,255,${1-d/md})` : `rgba(184,134,11,${1-d/md})`;
+                        ctx.beginPath();
+                        ctx.moveTo(...particles[i].position);
+                        ctx.lineTo(...particles[j].position);
+                        ctx.stroke();
                     }
                 }
-                ctx.fillStyle=document.body.getAttribute('data-theme')==='dark'?"rgba(255,255,255,0.5)":"rgba(184,134,11,0.5)";
-                ctx.beginPath();ctx.arc(...particles[i].position,particles[i].radius,0,Math.PI*2);ctx.fill();
+                ctx.fillStyle = document.body.getAttribute('data-theme')==='dark' ? "rgba(255,255,255,0.5)" : "rgba(184,134,11,0.5)";
+                ctx.beginPath();
+                ctx.arc(...particles[i].position, particles[i].radius, 0, Math.PI*2);
+                ctx.fill();
             }
             requestAnimationFrame(update);
         }
 
-        window.addEventListener('resize',resize);
-        resize();update();
+        window.addEventListener('resize', resize);
+        resize(); update();
     </script>
 </body>
 </html>
