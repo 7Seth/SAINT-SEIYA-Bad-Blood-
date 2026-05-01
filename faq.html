@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAD BLOOD: Perguntas Frequentes</title>
+    <link rel="icon" href="https://www.dropbox.com/scl/fi/4ctmdotk81q515xgdhl3a/estrela_original_brilho_real-1.gif?rlkey=2ic956xmb48rmnvzf9ccd2ptm&st=9rz5q0sd&raw=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;900&family=Caesar+Dressing&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
+
+    <style>
+        :root{
+            --color:#B8860B;
+            --font-titles:"Cinzel",serif;
+            --font-text:"Cormorant Garamond",serif;
+            --dynamic-bg:url('https://www.dropbox.com/scl/fi/dh6z0b6iz4kgfq0021yr2/10.png?rlkey=gjltpmz952idlzj2yazjoo71d&st=q1p8r8pz&raw=1');
+            --gold-glow:#e8c477;
+            --base-font:18px;
+            --bg-x:0px;
+            --bg-y:0px;
+        }
+        [data-theme="light"]{--bg-body:#f8f4eb;--text-color:#2c2a35;--border-color:rgba(184,134,11,0.3);--ev-bg:rgba(255,255,255,0.65)}
+        [data-theme="dark"]{--bg-body:#060716;--text-color:#e0d9c0;--border-color:rgba(201,162,90,0.3);--ev-bg:rgba(255,255,255,0.08)}
+        
+        body{background:var(--bg-body);color:var(--text-color);font-family:var(--font-text);margin:0;overflow-x:hidden;transition:background .5s,color .5s;cursor:url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=1eawbgp5&raw=1'),auto;font-size:var(--base-font); text-shadow: 1px 1px 1px black}
+
+        canvas{position:fixed;top:0;left:0;z-index:-1;pointer-events:none}
+        .cloud-1,.cloud-3{width:750px;position:absolute;left:-10%;top:99%;z-index:-1;opacity:0.35}
+        .cloud-2{width:550px;position:absolute;left:50%;top:-35%;transform:translateX(-50%);z-index:-1;opacity:0.35}
+        .cloud-3{transform:scaleX(-1)}
+
+        .accessibility-panel,.action-panel{position:fixed;top:10px;z-index:1000;display:flex;gap:8px;background:rgba(30,30,45,0.9);padding:8px 12px;border-radius:8px;border:1px solid var(--color);box-shadow:0 4px 15px rgba(0,0,0,0.5)}
+        .action-panel{right:10px}
+        .acc-btn{width:42px;height:42px;border:none;background:rgba(0,0,0,0.15);color:var(--gold-glow);border-radius:6px;font-size:1.1rem;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center}
+        .acc-btn:hover{background:rgba(184,134,11,0.25);transform:translateY(-2px)}
+        .acc-btn.active{background:#8a8a9e;color:#fff}
+
+        .cosmos-layer,.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+        .stars{opacity:0.7;background-image:radial-gradient(1px 1px at 25% 15%,#f5ecc8 50%,transparent),radial-gradient(1px 1px at 75% 35%,#e8d99a 50%,transparent),radial-gradient(1.5px 1.5px at 45% 65%,#fff 50%,transparent),radial-gradient(1px 1px at 85% 80%,#d6c89a 50%,transparent);background-size:600px 600px;animation:twinkle 8s ease-in-out infinite alternate}
+        [data-theme="light"] .stars{opacity:0.25}
+        @keyframes twinkle{from{opacity:0.4}to{opacity:0.95}}
+
+        section.header{position:relative;min-height:100vh;padding:80px 5%;display:flex;justify-content:center;align-items:center;overflow:hidden}
+
+        section.header::before{
+            content:"";
+            background:var(--dynamic-bg) no-repeat center center;
+            background-size: contain;
+            position:absolute;
+            width:70%; height:85%;
+            left:50%; top:-5%;
+            transform:translateX(-50%) translate(var(--bg-x), var(--bg-y));
+            filter:saturate(1.1) brightness(75%) drop-shadow(0 0 20px #000);
+            z-index:1; pointer-events:none; opacity:0.25;
+            transition:transform .6s cubic-bezier(0.23,1,0.32,1);
+        }
+
+        .header-content{
+            display:flex; gap:50px; max-width:1200px; width:100%; position:relative; z-index:2;
+        }
+
+        .header-left{ flex: 0 0 48%; max-width: 580px; width: 100%; }
+        .header-right{ flex: 1; min-width: 0; }
+
+        .tituloheader{text-align:left;text-transform:uppercase;font-family:var(--font-titles);margin-bottom:30px}
+        saint{font-size:3.2rem;letter-spacing:2px;line-height:1;font-weight:700;display:block}
+        evolution{font-size:4.5rem;color:var(--color);display:block;margin-top:-5px;line-height:1;font-weight:900}
+
+        .textheader{font-size:1rem;line-height:1.55}
+
+        .faq-list{list-style:none;padding:0;margin:0;}
+
+        .faq-item{
+            position:relative;
+            margin-bottom:28px;
+            cursor:pointer;
+            padding:18px 22px;
+            border-radius:12px;
+            transition:all .4s ease;
+            background:rgba(255,255,255,0.03);
+        }
+
+        .faq-item:hover{
+            background:var(--ev-bg);
+            transform:translateX(8px);
+        }
+
+        .faq-item.active{
+            background:var(--ev-bg);
+        }
+
+        .faq-question{
+            font-family:var(--font-titles);
+            color:var(--color);
+            font-size:1.32rem;
+            font-weight:700;
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .faq-number {
+            color: var(--color);
+            font-weight: 900;
+            font-size: 1.1rem;
+            min-width: 52px;
+        }
+
+        .faq-answer{
+            margin-top: 16px;
+            font-size: 0.96rem;
+            line-height: 1.65;
+            display: none;
+            padding-left: 4px;
+        }
+
+        .textheader p,
+        .faq-answer {
+            text-align: justify !important;
+        }
+
+        @media (max-width:900px){
+            .header-content{flex-direction:column; gap:40px; text-align:center}
+            .header-left{flex:none; max-width:100%; order:1}
+            .header-right{order:2; width:100%}
+
+            .tituloheader{text-align:center}
+            saint{font-size:2.35rem; letter-spacing:1.5px}
+            evolution{font-size:3.35rem; margin-top:-8px}
+
+            .faq-item{margin-bottom:20px; padding:16px 18px}
+            .faq-question{font-size:1.22rem}
+            .faq-number { min-width: 48px; font-size: 1.05rem; }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+    <canvas id="canvas"></canvas>
+    <div class="cosmos-layer"></div>
+    <div class="stars"></div>
+
+    <div class="clouds">
+        <img src="https://www.dropbox.com/scl/fi/82u0ubhw58cz0shrf1z25/nuvem-top.png?rlkey=r5z0ffofjzvvz9skyfrol6bym&st=6bd90gyc&raw=1" class="cloud-2" alt="">
+        <img src="https://www.dropbox.com/scl/fi/lilozld3mqanm1g5b29xg/nuvens-bottom.png?rlkey=vu7u2vuu4my2lww9g977x89mu&st=a3cqk77g&raw=1" class="cloud-3" alt="">
+    </div>
+
+    <div class="accessibility-panel">
+        <button class="acc-btn" id="font-small" title="Reduzir o tamanho das letras">-A</button>
+        <button class="acc-btn active" id="font-medium" title="Tamanho padrão das letras">A</button>
+        <button class="acc-btn" id="font-large" title="Aumentar o tamanho das letras">A+</button>
+        <button class="acc-btn" id="theme-toggle" title="Alternar Tema"><i class="fas fa-sun" id="theme-icon"></i></button>
+    </div>
+
+    <div class="action-panel">
+        <button class="acc-btn" id="btn-timeline" title="Ir para Timeline">
+            <i class="fas fa-scroll"></i>
+        </button>
+        <button class="acc-btn" id="btn-home" title="Voltar à Página Inicial">
+            <i class="fas fa-home"></i>
+        </button>
+    </div>
+
+    <section class="header">
+        <div class="header-content">
+            <section class="header-left">
+                <div class="tituloheader">
+                    <saint id="title-saint">PERGUNTAS</saint>
+                    <evolution id="title-evolution">FREQUENTES</evolution>
+                </div>
+                <div class="textheader">
+                    <div id="text-container">
+                        <p>Clique em qualquer pergunta do lado direito para ver a resposta aqui.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="header-right">
+                <ul class="faq-list" id="faq-list"></ul>
+            </section>
+        </div>
+    </section>
+
+    <script>
+        const faqData = [
+            { q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 
+              a: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam." },
+            { q: "Quisque at augue ut libero tincidunt tincidunt.", 
+              a: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt." },
+            { q: "Vivamus suscipit tortor eget felis porttitor volutpat.", 
+              a: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident." },
+            { q: "Cras ultricies ligula sed magna dictum porta.", 
+              a: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur." },
+            { q: "Curabitur aliquet quam id dui posuere blandit.", 
+              a: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur." },
+            { q: "Pellentesque in ipsum id orci porta dapibus.", 
+              a: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit." },
+            { q: "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.", 
+              a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+            { q: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", 
+              a: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
+            { q: "Donec sollicitudin mi sit amet mauris.", 
+              a: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+            { q: "Nulla quis lorem ut libero malesuada feugiat.", 
+              a: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium." }
+        ];
+
+        function loadFAQ() {
+            const container = document.getElementById('faq-list');
+            container.innerHTML = '';
+
+            faqData.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'faq-item';
+                li.innerHTML = `
+                    <div class="faq-question">
+                        <span class="faq-number">Q ${String(index + 1).padStart(2, '0')}</span>
+                        ${item.q}
+                    </div>
+                    <div class="faq-answer">${item.a}</div>
+                `;
+                li.addEventListener('click', () => highlightFAQ(li, index));
+                container.appendChild(li);
+            });
+        }
+
+        function highlightFAQ(el, i) {
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+
+            const ts = document.getElementById('title-saint');
+            const te = document.getElementById('title-evolution');
+            const tt = document.getElementById('text-container');
+
+            [ts, te, tt].forEach(e => e.style.opacity = '0');
+
+            setTimeout(() => {
+                ts.innerText = "RESPOSTA";
+                te.innerText = `Q${String(i+1).padStart(2, '0')}`;
+                tt.innerHTML = `<p>${faqData[i].a}</p>`;
+                [ts, te, tt].forEach(e => e.style.opacity = '1');
+            }, 350);
+        }
+
+        let fontLevel = 1;
+        function setFontSize(level) {
+            fontLevel = level;
+            const sizes = ['0.92rem', '1rem', '1.09rem'];
+            document.documentElement.style.fontSize = sizes[level];
+            document.querySelectorAll('.acc-btn').forEach(btn => btn.classList.remove('active'));
+            if(level === 0) document.getElementById('font-small').classList.add('active');
+            if(level === 1) document.getElementById('font-medium').classList.add('active');
+            if(level === 2) document.getElementById('font-large').classList.add('active');
+        }
+
+        document.getElementById('font-small').addEventListener('click', () => setFontSize(0));
+        document.getElementById('font-medium').addEventListener('click', () => setFontSize(1));
+        document.getElementById('font-large').addEventListener('click', () => setFontSize(2));
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function toggleTheme() {
+            const current = document.body.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeIcon.classList.toggle('fa-moon', newTheme === 'dark');
+            themeIcon.classList.toggle('fa-sun', newTheme === 'light');
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        document.getElementById('btn-home').addEventListener('click', () => {
+            window.location.href = "index.html";
+        });
+
+        document.getElementById('btn-timeline').addEventListener('click', () => {
+            window.location.href = "timeline.html";
+        });
+
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', saved);
+            themeIcon.classList.toggle('fa-moon', saved === 'dark');
+            themeIcon.classList.toggle('fa-sun', saved === 'light');
+
+            loadFAQ();
+
+            setTimeout(() => {
+                const firstItem = document.querySelector('.faq-item');
+                if (firstItem) firstItem.click();
+            }, 600);
+
+            createParallaxBackground();
+        });
+
+        function createParallaxBackground(){
+            const h = document.querySelector('.header');
+            h.addEventListener('mousemove', e => {
+                const r = h.getBoundingClientRect();
+                const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                h.style.setProperty('--bg-x', x*25 + 'px');
+                h.style.setProperty('--bg-y', y*18 + 'px');
+            });
+            h.addEventListener('mouseleave', () => {
+                h.style.setProperty('--bg-x', '0px');
+                h.style.setProperty('--bg-y', '0px');
+            });
+        }
+
+        const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+        class Vec2 extends Array {
+            constructor(...v){super(...(v.length===2?v:v.length===1?[v[0],v[0]]:[0,0])); this.x=this[0]; this.y=this[1]}
+            add(b){this[0]+=b[0];this[1]+=b[1]}
+            distance(b){return Math.hypot(b[0]-this[0],b[1]-this[1])}
+        }
+        class Particle{
+            constructor(){
+                this.speed = new Vec2(Math.random()-0.5, Math.random()-0.5);
+                this.position = new Vec2(Math.random()*innerWidth, Math.random()*innerHeight);
+                this.radius = Math.random()*4 + 1;
+            }
+            update(){
+                if(this.position[0]>innerWidth || this.position[0]<0) this.speed[0]*=-1;
+                if(this.position[1]>innerHeight || this.position[1]<0) this.speed[1]*=-1;
+                this.position.add(this.speed);
+            }
+        }
+        
+        let particles = [];
+        for(let i=0; i<65; i++) particles.push(new Particle());
+
+        function resize(){canvas.width=innerWidth; canvas.height=innerHeight}
+        function update(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            const md = (canvas.width + canvas.height)/25;
+            for(let i=0; i<particles.length; i++){
+                particles[i].update();
+                for(let j=i+1; j<particles.length; j++){
+                    const d = particles[i].position.distance(particles[j].position);
+                    if(d < md){
+                        ctx.strokeStyle = document.body.getAttribute('data-theme')==='dark' ? `rgba(255,255,255,${1-d/md})` : `rgba(184,134,11,${1-d/md})`;
+                        ctx.beginPath();
+                        ctx.moveTo(...particles[i].position);
+                        ctx.lineTo(...particles[j].position);
+                        ctx.stroke();
+                    }
+                }
+                ctx.fillStyle = document.body.getAttribute('data-theme')==='dark' ? "rgba(255,255,255,0.5)" : "rgba(184,134,11,0.5)";
+                ctx.beginPath();
+                ctx.arc(...particles[i].position, particles[i].radius, 0, Math.PI*2);
+                ctx.fill();
+            }
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('resize', resize);
+        resize(); update();
+    </script>
+</body>
+</html>
