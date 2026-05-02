@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: black;
+      font-family: 'Georgia', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .pergaminho {
+      width: 960px;    
+      height: 1080px;  
+      background: url('https://www.dropbox.com/scl/fi/2xa9xxi5vb20ay6d0baxl/pergaminho.png?rlkey=q6ltba61zlcqq449qygrgl6up&st=l2jd1rf7&raw=1') no-repeat center center;
+      background-size: contain;
+      position: relative;
+    }
+
+    .conteudo {
+      position: absolute;
+      top: 190px;     
+      bottom: 190px;   
+      left: 135px;     
+      right: 135px;
+      overflow-y: auto;
+      padding: 35px 70px;
+      line-height: 1.9;
+      font-size: 19px;
+      color: #3c2f1e;
+      text-align: justify;
+    }
+
+    .conteudo::-webkit-scrollbar {
+      width: 3px;
+      padding: 25px;
+    }
+    .conteudo::-webkit-scrollbar-thumb {
+      background: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pergaminho">
+    <div class="conteudo">
+      <h1 style="text-align: center; margin-top: 10px; font-size: 32px;">Título</h1>
+      
+      <p>Texto texto Texto textoTexto texto Texto textoTexto textoTexto textoTexto texto Texto texto Texto texto .</p>
+      
+      <p>Texto textoTexto textoTexto textoTexto texto Texto textoTexto textoTexto texto Texto texto</p>
+
+      <div style="text-align: center; margin: 35px 0;">
+        <img src="https://via.placeholder.com/620x300" alt="Imagem exemplo" style="max-width: 100%; border: 3px solid #5c4630; border-radius: 6px;">
+      </div>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+    </div>
+  </div>
+
+</body>
+</html>
