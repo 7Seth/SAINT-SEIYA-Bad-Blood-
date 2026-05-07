@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="https://www.dropbox.com/scl/fi/4ctmdotk81q515xgdhl3a/estrela_original_brilho_real-1.gif?rlkey=2ic956xmb48rmnvzf9ccd2ptm&st=9rz5q0sd&raw=1">
+<title>Saint Seya: Bad Blood</title>
+<meta name="description" content="Os Cavaleiros do Zodíaco" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Caesar+Dressing&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+:root {
+    --bg: #0d0f1c;
+    --cosmos-deep: #07091a;
+    --nebula: #1f1a3d;
+    --marble-1: #f1ece1;
+    --marble-2: #d8d0bf;
+    --marble-3: #e6dfcf;
+    --marble-ink: #1d1c2c;
+    --gold: #c9a25a;
+    --gold-glow: #e8c477;
+    --gold-deep: #8a6b30;
+    --text: #ece6d4;
+    --muted: #9a93b0;
+    --border: rgba(201, 162, 90, 0.3);
+    --shadow-marble: 0 22px 30px -22px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -2px 8px rgba(80, 60, 30, 0.2);
+    --shadow-gold: 0 0 30px rgba(201, 162, 90, 0.35), 0 0 30px rgba(201, 162, 90, 0.18);
+    --gradient-cosmos: radial-gradient(ellipse at top, rgba(60, 40, 130, 0.55) 0%, transparent 60%), linear-gradient(180deg, #0d0f1c 0%, #060716 100%);
+    --btn-active: #8a8a9e;
+}
+[data-theme="light"] {
+    --bg: #f8f4eb;
+    --cosmos-deep: #e8e0d0;
+    --nebula: #d4c9b0;
+    --marble-1: #2c2a35;
+    --marble-2: #3f3a4a;
+    --marble-3: #d8d0bf;
+    --gold: #b38a3f;
+    --gold-glow: #d4a85f;
+    --gold-deep: #6b4f1f;
+    --text: #2c2a35;
+    --muted: #5c5a6b;
+    --border: rgba(139, 105, 40, 0.4);
+    --shadow-gold: 0 0 25px rgba(179, 138, 63, 0.4);
+    --gradient-cosmos: linear-gradient(180deg, #f8f4eb 0%, #e8e0d0 100%);
+    --btn-active: #6b6b7f;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--gradient-cosmos);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+h1, h2, h3, h4 { font-family: "Cinzel", serif; letter-spacing: 0.04em; margin: 0; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.cosmos-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(ellipse 60% 40% at 70% 30%, rgba(80, 50, 160, 0.35), transparent 70%), radial-gradient(ellipse 50% 30% at 20% 60%, rgba(160, 60, 60, 0.2), transparent 70%);
+}
+.stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.7;
+    background-image: radial-gradient(1px 1px at 25% 15%, #f5ecc8 50%, transparent), radial-gradient(1px 1px at 75% 35%, #e8d99a 50%, transparent), radial-gradient(1.5px 1.5px at 45% 65%, #ffffff 50%, transparent), radial-gradient(1px 1px at 85% 80%, #d6c89a 50%, transparent), radial-gradient(1px 1px at 15% 90%, #ece2b0 50%, transparent), radial-gradient(1.5px 1.5px at 60% 20%, #fff8d8 50%, transparent), radial-gradient(1px 1px at 30% 50%, #c9bb8a 50%, transparent);
+    background-size: 600px 600px;
+    background-repeat: repeat;
+    animation: twinkle 8s ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: 0.4; } to { opacity: 0.95; } }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 5;}
+.site-header { padding-top: 28px; }
+
+.nav-item-container { position: relative; display: inline-block; }
+.urnas-btn {
+    padding:9px 18px; font-family:"Cinzel",serif; font-size:.72rem;
+    letter-spacing:.22em; text-transform:uppercase; border-radius:3px; transition:all .25s;
+    color: var(--gold-glow); cursor:pointer; display:flex; align-items:center; gap:8px;
+}
+.urnas-btn .arrow { transition: transform .3s ease; }
+.urnas-btn.active .arrow { transform: rotate(180deg); }
+
+.dropdown-urnas {
+    display:none; top:100%; left:0; min-width:280px;
+    padding:8px 0; z-index:99999; margin-top:6px; background: #1a1830; border: 1px solid var(--border);
+}
+.dropdown-urnas.show { display:block; }
+
+.category-header {
+    padding:9px 20px; font-family:"Cinzel",serif; font-size:.72rem;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--gold-glow);
+    cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+}
+.category-header:hover { background:rgba(201,162,90,.1); }
+.category-header .arrow { transition: transform .3s ease; font-size:10px; }
+.category-header.active .arrow { transform: rotate(180deg); }
+
+.category-content { display:none; padding-left:20px; }
+.category-content.show { display:block; }
+
+.dropdown-urnas a {
+    display:block; padding:8px 20px; font-family:"Cinzel",serif; font-size:.71rem;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--text);
+    transition:all .25s; cursor:pointer;
+}
+.dropdown-urnas a:hover { background:rgba(201,162,90,.15); color:#fff; padding-left:32px; }
+
+.pediment {
+    padding: 18px 32px;
+    text-align: center;
+    clip-path: polygon(0 30%, 8% 0, 92% 0, 100% 30%, 100% 100%, 0 100%);
+}
+.pediment h1 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.navbar {
+    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+    margin-top: 7%;
+}
+.nav-pill {
+    padding: 9px 18px;
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.nav-pill:hover { color: var(--gold-deep); }
+.nav-pill.highlight,
+.nav-pill.active {
+    background: #1a1830;
+    color: var(--gold-glow);
+    border: 1px solid rgba(201, 162, 90, 0.6);
+    box-shadow: var(--shadow-gold);
+}
+
+.logo { filter: drop-shadow(1px 1px 10px black); }
+.logo:hover { filter: brightness(200%) drop-shadow(0 0 5px rgba(243, 156, 18, 0.3)); animation: aura 1s infinite alternate; transition: all 1s ease-in-out; }
+@keyframes aura {
+    from { filter: drop-shadow(0 0 2px rgba(243, 156, 18, 0.2)); }
+    to { filter: drop-shadow(0 0 7px rgba(243, 156, 18, 0.7)); }
+}
+
+.layout { display: flex; gap: 24px; max-width: 1400px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 5; }
+
+.pantheon-rail {
+    width: 175px; flex-shrink: 0; padding: 25px 0 0 0;
+    display: flex; flex-direction: column; gap: 25px; align-items: center;
+}
+.pantheon-block { text-align: center; }
+.pantheon-block h4 { font-size: 0.85rem; letter-spacing: 0.32em; color: rgba(241, 236, 225, 0.85); margin-bottom: 14px; }
+.pantheon-img {
+    width: 225px; height: 200px; margin: 0 auto;
+    overflow: hidden; border-radius: 4px;
+    animation: float-slow 6s ease-in-out infinite;
+}
+.pantheon-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+.pantheon-block p {
+    margin-top: 12px; font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 0.8rem; line-height: 1.5; color: var(--muted); padding: 0 10px;
+}
+@keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+main { flex: 1; padding: 48px 16px 0; }
+
+.hero {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    align-items: center; min-height: 60vh;
+    text-shadow: 1px 1px 1px #000;
+    z-index: 99;
+}
+.hero-eyebrow { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.15rem; color: var(--gold-glow); }
+.hero h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1; letter-spacing: 0.06em;
+    color: var(--marble-1);
+    margin: 14px 0 18px;
+    z-index: 99;
+}
+.hero p.lead {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem; line-height: 1.6; color: var(--muted);
+    max-width: 460px;
+    z-index: 99;
+}
+.hero-cta { display: flex; align-items: center; gap: 22px; margin-top: 24px; flex-wrap: wrap; z-index: 99; }
+.btn-hero {
+    padding: 13px 26px; border-radius: 3px;
+    background: #1a1830;
+    border: 1px solid rgba(201, 162, 90, 0.6);
+    font-family: "Cinzel", serif; font-size: 0.72rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold-glow);
+    box-shadow: var(--shadow-gold);
+    transition: all 0.25s ease;
+}
+.btn-hero:hover { background: #25224a; transform: translateY(-2px); }
+
+.hero-figure {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    display: flex;
+}
+
+.hero-knight {
+    position: relative; 
+    z-index: 10; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    filter: brightness(100%) drop-shadow(7px 7px 15px black); 
+    transform: scale(1.3);
+    transition: opacity 0.4s ease;
+}
+
+.plaques {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+    gap: 1px;
+    margin-top: 50px;
+    width: 100%;
+    max-width: 100%;
+}
+.plaque-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.plaque-marble {
+    width: 100%;
+    max-width: 720px;
+    height: 125px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
+    left: 32%;
+}
+.plaque-marble img { width: 100%; height: 100%; }
+.plaque-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Caesar Dressing", cursive;
+    font-size: clamp(1.1rem, 2.8vw, 1.65rem);
+    letter-spacing: 0.08em;
+    color: #555;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.7), 0 -1px 2px rgba(255,255,255,0.5);
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 2;
+}
+.plaque-wrap:hover .plaque-marble { transform: translateY(-6px); }
+
+.content-section { display: none; }
+.content-section.active { display: block; }
+
+.stylobate {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px 28px 20px;
+    text-align: center;
+    position: relative;
+}
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.pillar { width: 250px; height: 700px; flex-shrink: 0; }
+.pillar img { width: 100%; height: 100%; object-fit: contain; margin-top: 65%; }
+.stylobate nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px;
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+.stylobate nav a {
+    color: var(--marble-ink);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.stylobate nav a:hover { color: var(--gold-deep); }
+
+.zodiac-spin { width: 800px; height: auto; position: absolute; right: -10%; top: -7%; opacity: 0.07; animation: spin 10s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.twelve-zodiac { width: 700px; height: auto; position: absolute; left: 27%; top: 2%; z-index: -5!important; filter: brightness(80%) drop-shadow(7px 7px 15px black); }
+.cloud-1 { width: 750px; height: auto; position: absolute; right: -10%; top: 99%; z-index: -1; }
+.cloud-2 { width: 550px; height: auto; position: absolute; left: 0; top: -35%; z-index: -1; }
+.cloud-3 { width: 750px; height: auto; position: absolute; left: -10%; top: 99%; z-index: -1; transform: scaleX(-1);}
+
+.accessibility-panel {
+    position: fixed;
+    top: 3px;
+    left: 3px;
+    z-index: 1000;
+    display: flex;
+    gap: 8px;
+    background: rgba(30, 30, 45, 0.9);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.acc-btn {
+    width: 42px; height: 42px;
+    border: none;
+    background: rgba(0, 0, 0, 0.15);
+    color: var(--gold-glow);
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.acc-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.08); }
+.acc-btn.active {
+    background: var(--btn-active);
+    color: white;
+    box-shadow: 0 0 10px rgba(201,162,90,0.5);
+}
+
+@media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-theme="dark">
+<div class="cosmos-layer"></div>
+<div class="stars"></div>
+
+<div class="accessibility-panel" id="accessibility-panel">
+    <button class="acc-btn" id="font-small" title="Diminuir fonte">A−</button>
+    <button class="acc-btn active" id="font-medium" title="Fonte padrão">A</button>
+    <button class="acc-btn" id="font-large" title="Aumentar fonte">A+</button>
+    <button class="acc-btn" id="theme-toggle" title="Alternar tema">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+</div>
+
+<header class="site-header">
+    <div class="container">
+        <div class="pediment"></div>
+        <nav class="navbar meander">
+            <div class="nav-item-container">
+            <div class="urnas-btn engraved" id="urnas-toggle">
+                URNAS SAGRADAS <span class="arrow">▼</span>
+            </div>
+
+            <div class="dropdown-urnas" id="dropdown-urnas">
+
+                <!-- BRONZE -->
+                <div class="category-header" data-category="bronze">
+                    BRONZE <span class="arrow">▼</span>
+                </div>
+                <div class="category-content" id="bronze-content">
+                    <a href="#" data-target="andromeda">Andrômeda</a>
+                    <a href="#" data-target="ave-do-paraiso">Ave do Paraíso</a>
+                    <a href="#" data-target="boieiro">Boieiro</a>
+                    <a href="#" data-target="camaleao">Camaleão</a>
+                    <a href="#" data-target="cao-menor">Cão Menor</a>
+                    <a href="#" data-target="cavalo-menor">Cavalo Menor</a>
+                    <a href="#" data-target="cassiopeia">Cassiopeia</a>
+                    <a href="#" data-target="cinzel">Cinzel</a>
+                    <a href="#" data-target="cisne">Cisne</a>
+                    <a href="#" data-target="coma-berenice">Coma Berenice</a>
+                    <a href="#" data-target="coroa-boreal">Coroa Boreal</a>
+                    <a href="#" data-target="dragao">Dragão</a>
+                    <a href="#" data-target="eridano">Erídano</a>
+                    <a href="#" data-target="fenix">Fênix</a>
+                    <a href="#" data-target="golfinho">Golfinho</a>
+                    <a href="#" data-target="hidra">Hidra</a>
+                    <a href="#" data-target="leao-menor">Leão Menor</a>
+                    <a href="#" data-target="lebre">Lebre</a>
+                    <a href="#" data-target="lince">Lince</a>
+                    <a href="#" data-target="lobo">Lobo</a>
+                    <a href="#" data-target="pegaso">Pégaso</a>
+                    <a href="#" data-target="quilha">Quilha</a>
+                    <a href="#" data-target="rena">Rena</a>
+                    <a href="#" data-target="unicornio">Unicórnio</a>
+                    <a href="#" data-target="ursa-menor">Ursa Menor</a>
+                    <a href="#" data-target="urso">Urso</a>
+                </div>
+
+                <!-- PRATA -->
+                <div class="category-header" data-category="prata">
+                    PRATA <span class="arrow">▼</span>
+                </div>
+                <div class="category-content" id="prata-content">
+                    <a href="#" data-target="aguia">Águia</a>
+                    <a href="#" data-target="altar">Altar</a>
+                    <a href="#" data-target="auriga">Auriga</a>
+                    <a href="#" data-target="baleia">Baleia</a>
+                    <a href="#" data-target="caes-de-caca">Cães de Caça</a>
+                    <a href="#" data-target="cao-maior">Cão Maior</a>
+                    <a href="#" data-target="cefeu">Cefeu</a>
+                    <a href="#" data-target="centauro">Centauro</a>
+                    <a href="#" data-target="cerbero">Cérbero</a>
+                    <a href="#" data-target="corvo">Corvo</a>
+                    <a href="#" data-target="cruzeiro-do-sul">Cruzeiro do Sul</a>
+                    <a href="#" data-target="escudo">Escudo</a>
+                    <a href="#" data-target="flecha">Flecha</a>
+                    <a href="#" data-target="fornalha">Fórnalha</a>
+                    <a href="#" data-target="grou">Grou</a>
+                    <a href="#" data-target="hercules">Hércules</a>
+                    <a href="#" data-target="lagarto">Lagarto</a>
+                    <a href="#" data-target="lira">Lira</a>
+                    <a href="#" data-target="mosca">Mosca</a>
+                    <a href="#" data-target="ofiuco">Ofiúco</a>
+                    <a href="#" data-target="orion">Órion</a>
+                    <a href="#" data-target="pavao">Pavão</a>
+                    <a href="#" data-target="perseu">Perseu</a>
+                    <a href="#" data-target="taca">Taça</a>
+                    <a href="#" data-target="triangulo">Triângulo</a>
+                </div>
+
+                <!-- OURO -->
+                <div class="category-header" data-category="ouro">
+                    OURO <span class="arrow">▼</span>
+                </div>
+                <div class="category-content" id="ouro-content">
+                    <a href="#" data-target="aries">Áries</a>
+                    <a href="#" data-target="touro">Touro</a>
+                    <a href="#" data-target="gemeos">Gêmeos</a>
+                    <a href="#" data-target="cancer">Câncer</a>
+                    <a href="#" data-target="leao">Leão</a>
+                    <a href="#" data-target="virgem">Virgem</a>
+                    <a href="#" data-target="libra">Libra</a>
+                    <a href="#" data-target="escorpiao">Escorpião</a>
+                    <a href="#" data-target="sagitario">Sagitário</a>
+                    <a href="#" data-target="capricornio">Capricórnio</a>
+                    <a href="#" data-target="aquario">Aquário</a>
+                    <a href="#" data-target="peixes">Peixes</a>
+                </div>
+
+                    <div class="category-header" data-category="outras">OUTRAS <span class="arrow">▼</span></div>
+                    <div class="category-content" id="outras-content">
+                        <a href="#" data-target="atena">EM BREVE!</a>
+                    </div>
+                </div>
+            </div>
+
+            <a class="nav-pill engraved" href="#" data-section="guerra-santa">A GUERRA SANTA</a>
+            <img src="https://www.dropbox.com/scl/fi/zmm6sbwn2t1ktmfc6okle/cdz_logo.png?rlkey=vdliq565826nxk9xe7lul8iaj&st=0srcjvfi&raw=1" class="logo" style="width: 200px;" alt="Saint Seiya Bad Blood">
+            <a class="nav-pill engraved" href="#" data-section="faq">F.A.Q</a>
+            <a class="nav-pill highlight active" href="#" data-section="ambientacao">AMBIENTAÇÃO</a>
+        </nav>
+    </div>
+</header>
+
+<canvas id="canvas" style="position:absolute; z-index: -1;"></canvas>
+<img src="https://www.dropbox.com/scl/fi/gkhyv5xxx5q3q3j749m3c/Saint-Seiya-9.png?rlkey=3513d7ayb8u74hxt8sqtk89v3&st=4ng2q9sl&raw=1" class="zodiac-spin" alt="Zodiac">
+
+<div class="layout meander">
+    <img src="https://www.dropbox.com/scl/fi/ozm1ayf5htvt9rtij2un4/Saint-Seiya-6.png?rlkey=j5o34dgwefkoe9ggv8v2u03e4&st=impnfp32&raw=1" class="twelve-zodiac" id="twelve-zodiac" alt="Twelve Zodiac">
+    <aside class="pantheon-rail">
+        <div class="pantheon-block">
+            <h4></h4>
+            <div class="pantheon-img"><img src="https://www.dropbox.com/scl/fi/tn47crot8u0c2pxwynqac/EF4B5400-ED2F-4ED4-9C08-1D1081D2214B.png?rlkey=izwp4y3aav4mmcoh7sot6hk3i&st=ry7vawm1&raw=1" alt="Pantheon" /></div>
+            <p><i>❝ Os seres humanos podem ser fracos e tolos, mas eles têm o poder de superar qualquer obstáculo através da união e da esperança.</i></p>
+        </div>
+    </aside>
+
+    <main>
+        <div id="main-content">
+
+            <div id="section-ambientacao" class="content-section active">
+                <section class="hero" id="dynamic-hero">
+                    <div>
+                        <p class="hero-eyebrow" id="hero-eyebrow">c. 10.000 a.C. ou antes</p>
+                        <h2 id="hero-title">A ERA<br />MITOLÓGICA</h2>
+                        <p class="lead" id="hero-lead">
+                            A Era Mitológica foi o tempo primordial em que as lendas nasceram e os alicerces do mundo foram erguidos...
+                        </p>
+                        <div class="hero-cta">
+                            <button class="btn-hero" id="cta-btn">↳ SAIBA MAIS →</button>
+                        </div>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" id="hero-image" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="Atena" />
+                    </div>
+                </section>
+                <section class="plaques">
+                    <div class="plaque-wrap" data-section="privilegios">
+                        <div class="plaque-marble">
+                            <img src="https://www.dropbox.com/scl/fi/gybntrqnhr0ow3dnzcgqj/13FBDC86-A3C6-4225-999B-939754551028.png?rlkey=ysa100e7d3zrdps17h0bymsjr&st=gqs1q8mk&raw=1" alt="Mármore 1" />
+                            <div class="plaque-text">PRIVILÉGIOS</div>
+                        </div>
+                    </div>
+                    <div class="plaque-wrap" data-section="guias">
+                        <div class="plaque-marble">
+                            <img src="https://www.dropbox.com/scl/fi/lk8as89l43pu2ana6mo31/8304009C-3346-4A5E-BB37-E74FBD2C1C67.png?rlkey=pllvy770np7eymd2pjyu24set&st=sycnk2jy&raw=1" alt="Mármore 2" />
+                            <div class="plaque-text">GUIAS</div>
+                        </div>
+                    </div>
+                    <div class="plaque-wrap" data-section="linhagens">
+                        <div class="plaque-marble">
+                            <img src="https://www.dropbox.com/scl/fi/6i731cog6ignqaq1i7i3n/B2B1CAE7-FF5B-4574-9E25-840716159D73.png?rlkey=u5pow72dj3wq0nzbnqllv480p&st=9xoi8vn6&raw=1" alt="Mármore 3" />
+                            <div class="plaque-text">LINHAGENS</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="section-guerra-santa" class="content-section">
+                <section class="hero">
+                    <div>
+                        <p class="hero-eyebrow">Século XX</p>
+                        <h2>A GUERRA<br />SANTA</h2>
+                        <p class="lead">A batalha entre as forças de Atena e Hades que decidirá o destino da humanidade.</p>
+                        <div class="hero-cta">
+                            <button class="btn-hero">↳ SAIBA MAIS →</button>
+                        </div>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="Guerra Santa" />
+                    </div>
+                </section>
+            </div>
+
+            <div id="section-faq" class="content-section">
+                <section class="hero">
+                    <div>
+                        <p class="hero-eyebrow">Dúvidas Comuns</p>
+                        <h2>F.A.Q</h2>
+                        <p class="lead">Respostas para as perguntas mais frequentes sobre o servidor.</p>
+                        <div class="hero-cta">
+                            <button class="btn-hero">↳ VER PERGUNTAS →</button>
+                        </div>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="FAQ" />
+                    </div>
+                </section>
+            </div>
+
+            <div id="section-privilegios" class="content-section">
+                <section class="hero">
+                    <div>
+                        <p class="hero-eyebrow">Benefícios Exclusivos</p>
+                        <h2>PRIVILÉGIOS</h2>
+                        <p class="lead">Conheça as vantagens de fazer parte da nossa Ordem.</p>
+                        <div class="hero-cta">
+                            <button class="btn-hero">↳ VER LISTA →</button>
+                        </div>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="Privilégios" />
+                    </div>
+                </section>
+            </div>
+
+            <div id="section-guias" class="content-section">
+                <section class="hero">
+                    <div>
+                        <p class="hero-eyebrow">Aprenda o Caminho</p>
+                        <h2>GUIAS</h2>
+                        <p class="lead">Tutoriais e orientações para novos Cavaleiros.</p>
+                        <div class="hero-cta">
+                            <button class="btn-hero">↳ ACESSAR GUIAS →</button>
+                        </div>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="Guias" />
+                    </div>
+                </section>
+            </div>
+
+            <div id="section-linhagens" class="content-section">
+                <section class="hero">
+                    <div>
+                        <p class="hero-eyebrow">Herança dos Deuses</p>
+                        <h2>LINHAGENS</h2>
+                        <p class="lead">As linhagens sanguíneas e suas conexões com os Cavaleiros lendários.</p>
+                        <div class="hero-cta">
+                            <button class="btn-hero">↳ EXPLORAR →</button>
+                        </div>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="Linhagens" />
+                    </div>
+                </section>
+            </div>
+
+            <div id="section-agradecimentos" class="content-section">
+                <section class="hero">
+                    <div>
+                        <p class="hero-eyebrow">Aos que nos apoiam</p>
+                        <h2>AGRADECIMENTOS</h2>
+                        <p class="lead">A todos que contribuem para manter este santuário vivo.</p>
+                    </div>
+                    <div class="hero-figure">
+                        <img class="hero-knight" src="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1" alt="Agradecimentos" />
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<!-- ARMADURAS DE BRONZE -->
+<h1>ARMADURAS DE BRONZE</h1>
+
+<div id="andromeda" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE ANDRÔMEDA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="ave-do-paraiso" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA AVE-DO-PARAÍSO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="boieiro" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO BOIEIRO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="camaleao" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CAMALEÃO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cao-menor" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CÃO MENOR</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cavalo-menor" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CAVALO MENOR</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cassiopeia" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE CASSIOPEIA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cinzel" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CINZEL</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cisne" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE CISNE</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="coma-berenice" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA COMA BERENICE</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="coroa-boreal" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA COROA BOREAL</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="dragao" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE DRAGÃO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="eridano" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE ERÍDANO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="fenix" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE FÊNIX</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="golfinho" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO GOLFINHO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="hidra" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA HIDRA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="leao-menor" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO LEÃO MENOR</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="lebre" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA LEBRE</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="lince" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO LINCE</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="lobo" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO LOBO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="pegaso" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE PÉGASO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="quilha" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA QUILHA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="rena" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA RENA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="unicornio" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO UNICÓRNIO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="ursa-menor" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA URSA MENOR</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="urso" data-eyebrow="Armadura de Bronze" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO URSO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<!-- ARMADURAS DE PRATA -->
+<h1>ARMADURAS DE PRATA</h1>
+
+<div id="aguia" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA ÁGUIA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="altar" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO ALTAR</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="auriga" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO AURIGA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="baleia" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA BALEIA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="caes-de-caca" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DOS CÃES DE CAÇA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cao-maior" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CÃO MAIOR</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cefeu" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE CEFEU</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="centauro" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CENTAURO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cerbero" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE CÉRBERO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="corvo" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CORVO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cruzeiro-do-sul" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO CRUZEIRO DO SUL</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="escudo" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO ESCUDO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="flecha" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA FLECHA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="fornalha" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA FORNALHA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="grou" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO GROU</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="hercules" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE HÉRCULES</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="lagarto" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO LAGARTO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="lira" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA LIRA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="mosca" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA MOSCA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="ofiuco" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE OFIÚCO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="orion" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE ÓRION</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="pavao" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO PAVÃO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="perseu" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE PERSEU</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="taca" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DA TAÇA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="triangulo" data-eyebrow="Armadura de Prata" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DO TRIÂNGULO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<!-- ARMADURAS DE OURO -->
+<h1>ARMADURAS DE OURO</h1>
+
+<div id="aries" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE ÁRIES</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="touro" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE TOURO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="gemeos" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE GÊMEOS</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="cancer" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE CÂNCER</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="leao" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE LEÃO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="virgem" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE VIRGEM</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="libra" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE LIBRA</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="escorpiao" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE ESCORPIÃO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="sagitario" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE SAGITÁRIO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="capricornio" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE CAPRICÓRNIO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="aquario" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE AQUÁRIO</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<div id="peixes" data-eyebrow="Armadura de Ouro" data-image="https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1">
+    <h2>CAVALEIRO DE PEIXES</h2>
+    <p>Lorem Ipsum</p>
+</div>
+
+<footer>
+    <div class="stylobate meander">
+        <div class="footer-content">
+            <div class="pillar"><img src="https://www.dropbox.com/scl/fi/mjoiy8yc3fcc081nfdpwn/7F421D32-4D27-4E91-94DC-753E86A60D08.png?rlkey=5rie4b7pu2ank2vhnkxy86sm2&st=5wkelpcp&raw=1" alt="Pilar"></div>
+            <div class="pillar"><img src="https://www.dropbox.com/scl/fi/mjoiy8yc3fcc081nfdpwn/7F421D32-4D27-4E91-94DC-753E86A60D08.png?rlkey=5rie4b7pu2ank2vhnkxy86sm2&st=5wkelpcp&raw=1" alt="Pilar"></div>
+            <div style="text-align: center; margin-top: 7%;">
+                <nav style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; font-family: 'Cinzel', serif; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 25px;">
+                    <a href="https://discord.gg/SEULINK" target="_blank"><i class="fab fa-discord" style="margin-right: 8px; font-size: 1.2rem;"></i>DISCORD</a>
+                    <a href="#" data-section="agradecimentos"><i class="fa-solid fa-hands-praying" style="margin-right: 8px; font-size: 1.2rem;"></i>AGRADECIMENTOS</a>
+                </nav>
+                <blockquote style="font-family: 'Cinzel', serif; font-style: italic; font-size: 0.7rem; color: var(--muted); max-width: 700px; margin: 0 auto; line-height: 1.7; text-align: center; margin-top: 5%; border-top: 3px double; border-bottom: 3px double; padding: 7px;">
+                    <i class="fa-solid fa-landmark" style="font-size: 35px; margin: 2%;"></i><br>
+                    “As flores nascem e depois murcham... as estrelas brilham, mas algum dia se extinguem... Comparado com isso, a vida do homem não é nada mais do que um simples piscar de olhos, um breve momento.”
+                </blockquote>
+            </div>
+            <div class="pillar"><img src="https://www.dropbox.com/scl/fi/mjoiy8yc3fcc081nfdpwn/7F421D32-4D27-4E91-94DC-753E86A60D08.png?rlkey=5rie4b7pu2ank2vhnkxy86sm2&st=5wkelpcp&raw=1" alt="Pilar"></div>
+            <div class="pillar"><img src="https://www.dropbox.com/scl/fi/mjoiy8yc3fcc081nfdpwn/7F421D32-4D27-4E91-94DC-753E86A60D08.png?rlkey=5rie4b7pu2ank2vhnkxy86sm2&st=5wkelpcp&raw=1" alt="Pilar"></div>
+        </div>
+    </div>
+    <img src="https://www.dropbox.com/scl/fi/lilozld3mqanm1g5b29xg/nuvens-bottom.png?rlkey=vu7u2vuu4my2lww9g977x89mu&st=q7o77o1i&raw=1" class="cloud-1" alt="">
+    <img src="https://www.dropbox.com/scl/fi/82u0ubhw58cz0shrf1z25/nuvem-top.png?rlkey=r5z0ffofjzvvz9skyfrol6bym&st=knhl66ht&raw=1" class="cloud-2" alt="">
+    <img src="https://www.dropbox.com/scl/fi/lilozld3mqanm1g5b29xg/nuvens-bottom.png?rlkey=vu7u2vuu4my2lww9g977x89mu&st=q7o77o1i&raw=1" class="cloud-3" alt="">
+</footer>
+
+<script>
+const twelveZodiac = document.getElementById('twelve-zodiac');
+const urnasToggle = document.getElementById('urnas-toggle');
+const dropdownUrnas = document.getElementById('dropdown-urnas');
+
+function updateHeroContent(key = 'default') {
+    const container = document.getElementById(key);
+    if (container) {
+        const eyebrow = container.getAttribute('data-eyebrow') || "Armadura Sagrada";
+        const title = container.querySelector('h2').innerHTML;
+        const lead = container.querySelector('p').innerHTML;
+        const image = container.getAttribute('data-image');
+
+        document.getElementById('hero-eyebrow').innerHTML = eyebrow;
+        document.getElementById('hero-title').innerHTML = title;
+        document.getElementById('hero-lead').innerHTML = lead;
+        if (image) document.getElementById('hero-image').src = image;
+        twelveZodiac.style.display = 'none';
+    } else {
+        document.getElementById('hero-eyebrow').innerHTML = "c. 10.000 a.C. ou antes";
+        document.getElementById('hero-title').innerHTML = "A ERA<br />MITOLÓGICA";
+        document.getElementById('hero-lead').innerHTML = "A Era Mitológica foi o tempo primordial em que as lendas nasceram e os alicerces do mundo foram erguidos...";
+        document.getElementById('hero-image').src = "https://www.dropbox.com/scl/fi/59z4t854r36tddd72gz98/atena_ss.png?rlkey=tz54u17xae0kltuvsezghdsxg&st=l0w5rwhy&raw=1";
+        twelveZodiac.style.display = 'block';
+    }
+}
+
+document.querySelectorAll('.category-header').forEach(header => {
+    header.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = document.getElementById(this.getAttribute('data-category') + '-content');
+        if (content) content.classList.toggle('show');
+    });
+});
+
+document.querySelectorAll('#dropdown-urnas a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const armorId = this.getAttribute('data-target');
+        updateHeroContent(armorId);
+        dropdownUrnas.classList.remove('show');
+        urnasToggle.classList.remove('active');
+    });
+});
+
+urnasToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropdownUrnas.classList.toggle('show');
+    urnasToggle.classList.toggle('active');
+});
+
+document.addEventListener('click', () => {
+    dropdownUrnas.classList.remove('show');
+    urnasToggle.classList.remove('active');
+});
+dropdownUrnas.addEventListener('click', e => e.stopPropagation());
+
+document.addEventListener('keydown', e => {
+    if (e.key === "Escape") {
+        dropdownUrnas.classList.remove('show');
+        urnasToggle.classList.remove('active');
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-pill[data-section]');
+const contentSections = document.querySelectorAll('.content-section');
+
+function activateSection(sectionId) {
+    contentSections.forEach(sec => sec.classList.remove('active'));
+    navLinks.forEach(link => link.classList.remove('highlight', 'active'));
+
+    const targetSection = document.getElementById(`section-${sectionId}`);
+    if (targetSection) targetSection.classList.add('active');
+
+    const activeLink = document.querySelector(`.nav-pill[data-section="${sectionId}"]`);
+    if (activeLink) activeLink.classList.add('highlight', 'active');
+}
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        activateSection(this.getAttribute('data-section'));
+    });
+});
+
+document.querySelectorAll('.plaque-wrap').forEach(plaque => {
+    plaque.addEventListener('click', () => {
+        activateSection(plaque.getAttribute('data-section'));
+    });
+});
+
+document.querySelectorAll('a[data-section]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        activateSection(this.getAttribute('data-section'));
+    });
+});
+
+const html = document.documentElement;
+function setFontSize(level) {
+    const sizes = ['0.9rem', '1rem', '1.12rem'];
+    html.style.fontSize = sizes[level];
+    document.querySelectorAll('.acc-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(['font-small','font-medium','font-large'][level]).classList.add('active');
+}
+document.getElementById('font-small').addEventListener('click', () => setFontSize(0));
+document.getElementById('font-medium').addEventListener('click', () => setFontSize(1));
+document.getElementById('font-large').addEventListener('click', () => setFontSize(2));
+
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+function toggleTheme() {
+    const current = document.body.getAttribute('data-theme');
+    const newTheme = current === 'dark' ? 'light' : 'dark';
+    document.body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeIcon.classList.toggle('fa-moon', newTheme === 'dark');
+    themeIcon.classList.toggle('fa-sun', newTheme === 'light');
+}
+themeToggle.addEventListener('click', toggleTheme);
+
+window.addEventListener('load', () => {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.body.setAttribute('data-theme', saved);
+    themeIcon.classList.toggle('fa-moon', saved === 'dark');
+    themeIcon.classList.toggle('fa-sun', saved === 'light');
+});
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+class Vec2 extends Array {
+  constructor (...values) {
+    switch(values.length) {
+      case 2: super(values[0], values[1]); break;
+      case 1: super(values[0], values[0]); break;
+      default: super(2); break;
+    }
+  }
+  get x(){ return this[0]; } set x(v){ this[0]=v; }
+  get y(){ return this[1]; } set y(v){ this[1]=v; }
+  add(b){ this[0]+=b[0]; this[1]+=b[1]; }
+  distance(b){ return Math.hypot(b[0]-this[0], b[1]-this[1]); }
+}
+class Particle {
+  constructor() {
+    this.speed = new Vec2(Math.random()*2-1, Math.random()*2-1);
+    this.position = new Vec2(Math.random()*innerWidth, Math.random()*innerHeight);
+    this.radius = Math.random()*4 + 1;
+  }
+  update() {
+    if (this.position.x > innerWidth || this.position.x < 0) this.speed.x *= -1;
+    if (this.position.y > innerHeight || this.position.y < 0) this.speed.y *= -1;
+    this.position.add(this.speed);
+  }
+}
+const particles = [];
+for (let i = 0; i < 75; i++) particles.push(new Particle());
+
+function animate() {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  const MAX = (innerWidth + innerHeight)/25;
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].update();
+    for (let j = i+1; j < particles.length; j++) {
+      const d = particles[i].position.distance(particles[j].position);
+      if (d < MAX) {
+        ctx.strokeStyle = `rgba(255,255,255,${1-d/MAX})`;
+        ctx.beginPath();
+        ctx.moveTo(...particles[i].position);
+        ctx.lineTo(...particles[j].position);
+        ctx.stroke();
+      }
+    }
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.beginPath();
+    ctx.arc(...particles[i].position, particles[i].radius, 0, Math.PI*2);
+    ctx.fill();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
