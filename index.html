@@ -65,15 +65,15 @@
             z-index:2;
         }
         
-        /* Correção principal: largura fixa no lado esquerdo */
+
         .header-left{
-            flex: 0 0 48%;           /* Largura fixa aproximada de 50% */
-            max-width: 580px;        /* Valor fixo para estabilidade */
+            flex: 0 0 48%;          
+            max-width: 580px;    
             width: 100%;
         }
         
         .header-right{
-            flex: 1;                 /* Ocupa o restante do espaço */
+            flex: 1;               
             min-width: 0;
         }
         
@@ -353,9 +353,6 @@ Agora, rumores de uma nova Guerra Santa espalham-se com crescente força entre h
                 [ts, te, tt].forEach(e => e.style.opacity = '1');
             }, 400);
         }
-
-        document.getElementById('btn-faq').onclick = () => alert("Em breve você poderá consultar as dúvidas frequentes sobre o projeto!");
-        document.getElementById('btn-home').onclick = () => alert("Indisponível!");
 
         function createParallaxBackground(){
             const h = document.querySelector('.header');
