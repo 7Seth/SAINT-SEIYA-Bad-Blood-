@@ -24,6 +24,11 @@
         [data-theme="light"]{--bg-body:#f8f4eb;--text-color:#2c2a35;--border-color:rgba(184,134,11,0.3);--ev-bg:rgba(255,255,255,0.65)}
         [data-theme="dark"]{--bg-body:#060716;--text-color:#e0d9c0;--border-color:rgba(201,162,90,0.3);--ev-bg:rgba(255,255,255,0.08)}
         
+        ::-webkit-scrollbar{width:5px}
+        ::-webkit-scrollbar-track{background:#fff}
+        ::-webkit-scrollbar-thumb{background:#B8860B;border-radius:0}
+        ::-webkit-scrollbar-thumb:hover{background:#e8c477}
+
         body{background:var(--bg-body);color:var(--text-color);font-family:var(--font-text);margin:0;overflow-x:hidden;transition:background .5s,color .5s;cursor:url('https://www.dropbox.com/scl/fi/kuwiuay99cg8qzbwdmb1k/1.png?rlkey=uxbaywxd31j50o4pmodo915u1&st=1eawbgp5&raw=1'),auto;font-size:var(--base-font); -webkit-text-stroke: 0.7px; text-shadow: 1px 1px 1px black}
 
         canvas{position:fixed;top:0;left:0;z-index:-1;pointer-events:none}
